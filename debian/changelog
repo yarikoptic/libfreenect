@@ -4,9 +4,10 @@ libfreenect (1:0.0.1+20101211-0ubuntu2~lucid) lucid; urgency=low
   * fixed typo in changelog
 
   [ Arne Bernin ]
-  * Switch to dpkg-source 3.0 (quilt) format
+  * finished splitting based packages, thanks to some hints by
+    Mark Renouf <mark.renouf@gmail.com>
 
- -- Arne Bernin <arne@alamut.de>  Sat, 11 Dec 2010 03:35:18 +0100
+ -- Arne Bernin <arne@alamut.de>  Sat, 11 Dec 2010 21:18:29 +0100
 
 libfreenect (0.0.20101122-0ubuntu2~lucid) lucid; urgency=low
 

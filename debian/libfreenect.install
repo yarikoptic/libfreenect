@@ -1,2 +1,2 @@
-usr/lib/*.so.*
+usr/lib/*.so*
 lib/udev/rules.d/51-libfreenect.rules

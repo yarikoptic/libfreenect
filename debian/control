@@ -2,6 +2,7 @@ Source: libfreenect
 Section: libdevel
 Priority: extra
 Maintainer: Arne Bernin <arne@alamut.de>
+Uploaders: Mark Renouf <mark.renouf@gmail.com>
 Build-Depends: debhelper (>= 7), libusb-1.0-0-dev, libglut3-dev, cdbs, cmake,  pkg-config
 Standards-Version: 3.8.4
 Homepage: http://openkinect.org/
@@ -15,18 +16,19 @@ Description: freenect open source driver for kinect camera
 Package: libfreenect-dev
 Section: libdevel
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libusb-1.0-0, libglut3
+Depends: ${shlibs:Depends}, ${misc:Depends}, libusb-1.0-0
 Description: freenect open source driver for kinect camera
  libfreenect is the core library for accessing the Microsoft Kinect USB camera.
  .
  This is the development package containing the libraries and header for
  software development with libfreenect.
 
-Package: libfreenect-utils
+Package: libfreenect-demos
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libusb-1.0-0, libglut3
 Description: freenect open source driver for kinect camera
  libfreenect is the core library for accessing the Microsoft Kinect USB camera.
  .
- This package includes the example program glview named as kinect-glview 
+ This package includes some example programs for kinect.
+ All programs start with a freenec- prefix. 
