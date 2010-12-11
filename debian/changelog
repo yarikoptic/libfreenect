@@ -1,10 +1,12 @@
 libfreenect (1:0.0.1+20101211-0ubuntu2~lucid) lucid; urgency=low
 
-  [ Arne Bernin ]
+  * New Version from upstream
+
+  * Naming changes, now defaults to freenect upstream version
+
   * fixed typo in changelog
 
-  [ Arne Bernin ]
-  * finished splitting based packages, thanks to some hints by
+  * finished splitting based packages, thanks for inspiration to
     Mark Renouf <mark.renouf@gmail.com>
 
  -- Arne Bernin <arne@alamut.de>  Sat, 11 Dec 2010 21:18:29 +0100
