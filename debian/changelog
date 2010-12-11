@@ -1,0 +1,76 @@
+libfreenect (1:0.0.1+20101211-0ubuntu2~lucid) lucid; urgency=low
+
+  [ Arne Bernin ]
+  * fixed typo in changelog
+
+  [ Arne Bernin ]
+  * Switch to dpkg-source 3.0 (quilt) format
+
+ -- Arne Bernin <arne@alamut.de>  Sat, 11 Dec 2010 03:35:18 +0100
+
+libfreenect (0.0.20101122-0ubuntu2~lucid) lucid; urgency=low
+
+  * fixed typo in changelog
+
+ -- Arne Bernin <arne@alamut.de>  Fri, 22 Nov 2010 14:41:01 +0100
+
+libfreenect (0.0.20101122-0ubuntu2~maverick) maverick; urgency=low
+
+  * added c++ api + code cleanups from upstream
+
+ -- Arne Bernin <arne@alamut.de>  Fri, 22 Nov 2010 14:41:01 +0100
+
+libfreenect (0.0.20101122-0ubuntu1~lucid) maverick; urgency=low
+
+  * added c++ api + code cleanups from upstream
+
+ -- Arne Bernin <arne@alamut.de>  Fri, 22 Nov 2010 14:41:01 +0100
+
+libfreenect (0.0.20101119-0ubuntu2~maverick) maverick; urgency=low
+
+  * Fix build for amd64
+
+ -- Arne Bernin <arne@alamut.de>  Fri, 19 Nov 2010 14:41:01 +0100
+
+libfreenect (0.0.20101119-0ubuntu1~maverick) maverick; urgency=low
+
+  * New upstream release
+
+ -- Arne Bernin <arne@alamut.de>  Fri, 19 Nov 2010 14:41:01 +0100
+
+libfreenect (0.0.1-4~maverick) maverick; urgency=low
+
+  * upload for maverick
+
+ -- Arne Bernin <arne@alamut.de>  Wed, 17 Nov 2010 23:04:12 +0100
+
+libfreenect (0.0.1-4~lucid) lucid; urgency=low
+
+  * add udev rules file and postinst to call udevadmin
+  * added Readme.Debian
+
+ -- Arne Bernin <arne@alamut.de>  Wed, 17 Nov 2010 23:04:12 +0100
+
+libfreenect (0.0.1-3~maverick) maverick; urgency=low
+
+  * add maverick to changelog so it can be used in ppa
+
+ -- Arne Bernin <arne@alamut.de>  Wed, 17 Nov 2010 23:04:12 +0100
+
+libfreenect (0.0.1-3) lucid; urgency=low
+
+  * Fix dependency errors for compiling
+
+ -- Arne Bernin <arne@alamut.de>  Wed, 17 Nov 2010 23:04:12 +0100
+
+libfreenect (0.0.1-2) lucid; urgency=low
+
+  * Fix dependency errors for building
+
+ -- Arne Bernin <arne@alamut.de>  Wed, 17 Nov 2010 23:04:12 +0100
+
+libfreenect (0.0.1-1) lucid; urgency=low
+
+  * Initial release 
+
+ -- Arne Bernin <arne@alamut.de>  Wed, 17 Nov 2010 21:26:12 +0100
