@@ -38,7 +38,7 @@ Description: freenect open source driver for kinect camera
 Package: freenect
 Section: libs
 Architecture: any
-Depends: libfreenect-demos, libfreenect-dev, libfreenect0.0
+Depends: ${misc:Depends}, libfreenect-demos, libfreenect-dev, libfreenect0.0
 Description: open source driver for kinect camera meta package
  libfreenect is the core library for accessing the Microsoft Kinect USB camera.
  .
