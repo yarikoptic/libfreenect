@@ -5,7 +5,7 @@ file for details.
 
 This code is licensed to you under the terms of the Apache License,
 version 2.0, or, at your option, the terms of the GNU General Public
-License, version 2.0. 
+License, version 2.0.
 
 On Debian systems, the complete text of the GNU General
 Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
@@ -25,10 +25,6 @@ copy of the CONTRIB file.
 Binary distributions must follow the binary distribution requirements
 of either License.
 
-On Debian systems, the complete text of the GNU General
-Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
-The Apache License is found in `/usr/share/common-licenses/Apache-2.0'
-
 The Debian packaging is:
 
     Copyright (C) 2010 arne <arne@alamut.de>
@@ -36,7 +32,5 @@ The Debian packaging is:
 you can redistribute it and/or modify
 it under the terms of the GNU General Public License Version 2 as published by
 the Free Software Foundation (see above)
-
-See the CONTRIB file for a list of contributers.
 
 
