@@ -160,4 +160,4 @@ IF ( BUILD_CPACK )
 ENDIF ( BUILD_CPACK )
 
   INSTALL(FILES "fakenect/README" DESTINATION "share/doc/" RENAME "README.fakenect")
-  INSTALL(FILES "udev/51-kinect.rules" DESTINATION "../lib/udev/rules.d/" RENAME "51-libfreenect.rules")
+  INSTALL(FILES "platform/linux/udev/51-kinect.rules" DESTINATION "../lib/udev/rules.d/" RENAME "51-libfreenect.rules")
