@@ -1,4 +1,5 @@
 usr/include/libfreenect*
 usr/lib/*.a
 usr/lib/*.so
+usr/lib/fakenect/*.so 
 usr/lib/pkgconfig/*

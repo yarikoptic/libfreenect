@@ -132,23 +132,23 @@ add_custom_target(uninstall
 # Create Debian/RPM Packages
 # after make, use "fakeroot cpack" in the build Dir to complete
 
-#IF ( BUILD_CPACK )
-#  set(CPACK_PACKAGE_DESCRIPTION "libfreenect for kinect")
-#  set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "libfreenect library for using kinect")
-#  set(CPACK_PACKAGE_NAME "libfreenect-dev")
-#  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libusb-1.0.0-dev")
+IF ( BUILD_CPACK )
+  set(CPACK_PACKAGE_DESCRIPTION "libfreenect for kinect")
+  set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "libfreenect library for using kinect")
+  set(CPACK_PACKAGE_NAME "libfreenect-dev")
+  set(CPACK_DEBIAN_PACKAGE_DEPENDS "libusb-1.0.0-dev")
 
-#  set(CPACK_PACKAGE_CONTACT "OpenKinect <openkinect@googlegroups.com>")
+  set(CPACK_PACKAGE_CONTACT "OpenKinect <openkinect@googlegroups.com>")
   #set(CPACK_PACKAGE_VENDOR "")
-#  set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VER_MAJOR})
-#  set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VER_MINOR})
-#  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VER_PATCH})
-#  set(VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
+  set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VER_MAJOR})
+  set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VER_MINOR})
+  set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VER_PATCH})
+  set(VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
 
-#  set(CPACK_GENERATOR "DEB;RPM;")
-#  set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}-${CMAKE_SYSTEM_PROCESSOR}")
+  set(CPACK_GENERATOR "DEB;RPM;")
+  set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}-${CMAKE_SYSTEM_PROCESSOR}")
 
-#  include(CPack)
+  include(CPack)
 
   INSTALL(FILES "udev/51-kinect.rules" DESTINATION "../lib/udev/rules.d/" RENAME "51-libfreenect.rules")
   INSTALL(FILES "include/libfreenect.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
@@ -157,5 +157,7 @@ add_custom_target(uninstall
   INSTALL(FILES "README.asciidoc" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
   INSTALL(FILES "doc/kinect_protocol.asciidoc" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
 
-#ENDIF ( BUILD_CPACK )
+ENDIF ( BUILD_CPACK )
 
+  INSTALL(FILES "fakenect/README" DESTINATION "share/doc/" RENAME "README.fakenect")
+  INSTALL(FILES "udev/51-kinect.rules" DESTINATION "../lib/udev/rules.d/" RENAME "51-libfreenect.rules")

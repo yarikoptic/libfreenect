@@ -1,3 +1,10 @@
+libfreenect (1:0.0.1+20101211-2) unstable; urgency=low
+
+  * include fakenect lib
+  * put include files under /usr/include instead of /usr/include/freenect
+
+ -- Arne Bernin <arne@alamut.de>  Mon, 13 Dec 2010 02:21:21 +0100
+
 libfreenect (1:0.0.1+20101211-1) unstable; urgency=low
 
   * Initial release for Debian (Closes: #606831)
@@ -6,7 +13,7 @@ libfreenect (1:0.0.1+20101211-1) unstable; urgency=low
     -- should go under /usr/lib for all architectures.
   * Upload sponsored by Yaroslav Halchenko <debian@onerussian.com>
 
- -- Arne Bernin <arne@alamut.de>  Sat, 11 Dec 2010 21:37:28 -0500
+ -- Arne Bernin <arne@alamut.de>  Sat, 11 Dec 2010 21:37:28 +0100
 
 libfreenect (1:0.0.1+20101211-0ubuntu2~lucid) lucid; urgency=low
 

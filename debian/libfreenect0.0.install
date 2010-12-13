@@ -1,2 +1,3 @@
 usr/lib/*.so.*
+usr/lib/fakenect/*.so.*
 lib/udev/rules.d/51-libfreenect.rules

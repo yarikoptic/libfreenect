@@ -18,6 +18,7 @@ include /usr/share/cdbs/1/class/cmake.mk
 
 DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
 
+
 install/libfreenect-demos::
 	mv debian/tmp/usr/bin/glview debian/tmp/usr/bin/freenect-glview
 	mv debian/tmp/usr/bin/glpclview debian/tmp/usr/bin/freenect-glpclview
