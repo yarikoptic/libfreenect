@@ -1,3 +1,9 @@
+libfreenect (1:0.0.1+20101211-3) unstable; urgency=low
+
+  * pulled in some changes by Yaroslav Halchenko <debian@onerussian.com>
+
+ -- Arne Bernin <arne@alamut.de>  Mon, 13 Dec 2010 02:21:21 +0100
+
 libfreenect (1:0.0.1+20101211-2) unstable; urgency=low
 
   * include fakenect lib
