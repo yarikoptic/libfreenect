@@ -2,9 +2,12 @@ libfreenect (1:0.0.1+20101211+1-1) unstable; urgency=low
 
   * Initial release for Debian (Closes: #606831)
   * Fixing my own ignorance (thank you Arne): new .orig.tar.gz
-    with a populated CONTRIB file as mandated by upstream.
+    must carry a populated CONTRIB file as mandated by upstream for
+    non-GIT distributions of unreleased (yet) versions
+  * Fresh snapshot of upstream development (master branch) as of
+    Dec 11 to actually match the date encoded in the version
 
- -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 14 Dec 2010 19:38:44 -0500
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 14 Dec 2010 21:45:11 -0500
 
 libfreenect (1:0.0.1+20101211-3) UNRELEASED; urgency=low
 
