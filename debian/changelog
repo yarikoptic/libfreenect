@@ -6,6 +6,7 @@ libfreenect (1:0.0.1+20101211+1-1) unstable; urgency=low
     non-GIT distributions of unreleased (yet) versions
   * Fresh snapshot of upstream development (master branch) as of
     Dec 11 to actually match the date encoded in the version
+    - Added build-depends: python-numpy
 
  -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 14 Dec 2010 21:45:11 -0500
 
