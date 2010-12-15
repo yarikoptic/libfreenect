@@ -1,6 +1,13 @@
-libfreenect (1:0.0.1+20101211-3) unstable; urgency=low
+libfreenect (1:0.0.1+20101211+1-1) unstable; urgency=low
 
   * Initial release for Debian (Closes: #606831)
+  * Fixing my own ignorance (thank you Arne): new .orig.tar.gz
+    with a populated CONTRIB file as mandated by upstream.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 14 Dec 2010 19:38:44 -0500
+
+libfreenect (1:0.0.1+20101211-3) UNRELEASED; urgency=low
+
   * Introduced python-freenect binary package, submitted pull request
     for the introduced patch upstream.
 
