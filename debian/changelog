@@ -1,3 +1,15 @@
+libfreenect (1:0.0.1+20101211+1-2) unstable; urgency=low
+
+  [ arnebe ]
+  * [a20ff19] Added missing dependency to libfreenect0.0 in
+    libfreenect-dev
+
+  [ Yaroslav Halchenko ]
+  * [2533ceb] Added missing dependency to udev in libfreenect0.0,
+    it uses udevadm in libfreenect0.0.postinst
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 04 Jan 2011 18:41:55 -0500
+
 libfreenect (1:0.0.1+20101211+1-1) unstable; urgency=low
 
   * Initial release for Debian (Closes: #606831)
