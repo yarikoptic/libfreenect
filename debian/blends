@@ -1,0 +1,5 @@
+Format: extended
+Depends: libfreenect-dev
+Tasks: debian-science/dataacquisition,
+	   debian-science/psychophysics
+Pkg-URL: http://neuro.debian.net/pkgs/%(Pkg-Name)s.html
