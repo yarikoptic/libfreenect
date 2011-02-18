@@ -1,4 +1,20 @@
-libfreenect (1:0.0.1+20101211+1-2) unstable; urgency=low
+libfreenect (1:0.0.1+20101211+2-1) unstable; urgency=low
+
+  * Initial release for Debian (Closes: #606831)
+  * Cherry-picked from upstream to resolve licensing issues:
+    - [9cdc713] Removed old, unused kinect protocol documentation, as all
+      info now exists on wiki and should be exported from there as needed
+    - [3390f9b] Added BSD license into libusb-1.0 finder for compliance
+  * [58e6b37] Added pre-generated CONTRIB to be distributed/installed
+    under /u/s/doc/*freenect* to fulfill upstream license requirement
+  * [64cb9a2] debian/copyright: migrated to DEP5 format
+    - added missing statement for cmake_modules/Findlibusb-1.0.cmake
+  * [f34b2ea] added debian/blends and injected into the debian-science
+    task files
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 18 Feb 2011 16:16:42 -0500
+
+libfreenect (1:0.0.1+20101211+1-2) UNRELEASED; urgency=low
 
   [ arnebe ]
   * [a20ff19] Added missing dependency to libfreenect0.0 in
@@ -10,9 +26,9 @@ libfreenect (1:0.0.1+20101211+1-2) unstable; urgency=low
 
  -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 04 Jan 2011 18:41:55 -0500
 
-libfreenect (1:0.0.1+20101211+1-1) unstable; urgency=low
+libfreenect (1:0.0.1+20101211+1-1) UNRELEASED; urgency=low
 
-  * Initial release for Debian (Closes: #606831)
+  * Initial upload for Debian
   * Fixing my own ignorance (thank you Arne): new .orig.tar.gz
     must carry a populated CONTRIB file as mandated by upstream for
     non-GIT distributions of unreleased (yet) versions
