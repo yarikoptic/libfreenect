@@ -5,7 +5,7 @@ libfreenect (1:0.0.1+20101211+2-1) unstable; urgency=low
     - [9cdc713] Removed old, unused kinect protocol documentation, as all
       info now exists on wiki and should be exported from there as needed
     - [3390f9b] Added BSD license into libusb-1.0 finder for compliance
-  * [58e6b37] Added pre-generated CONTRIB to be distributed/installed
+  * [58e6b37] Carry pre-generated CONTRIB to be distributed/installed
     under /u/s/doc/*freenect* to fulfill upstream license requirement
   * [64cb9a2] debian/copyright: migrated to DEP5 format
     - added missing statement for cmake_modules/Findlibusb-1.0.cmake
