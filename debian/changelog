@@ -1,3 +1,9 @@
+libfreenect (1:0.0.1+20101211+2-2) unstable; urgency=low
+
+  * Added freeglut3-dev as a leading alternative to libglut3-dev
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 26 Jun 2011 09:36:02 -0400
+
 libfreenect (1:0.0.1+20101211+2-1) unstable; urgency=low
 
   * Initial release for Debian (Closes: #606831)
