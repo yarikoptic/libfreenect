@@ -49,8 +49,13 @@
 #define DEPTH_PKTBUF 2048
 #define VIDEO_PKTBUF 2048
 #else
-#define PKTS_PER_XFER 16
-#define NUM_XFERS 16
+#ifdef _WIN32
+  #define PKTS_PER_XFER 32
+  #define NUM_XFERS 8
+#else
+  #define PKTS_PER_XFER 16
+  #define NUM_XFERS 16
+#endif
 #define DEPTH_PKTBUF 1920
 #define VIDEO_PKTBUF 1920
 #endif
@@ -77,6 +82,8 @@ typedef struct {
 	int dead_xfers;
 } fnusb_isoc_stream;
 
+int fnusb_num_devices(fnusb_ctx *ctx);
+
 int fnusb_init(fnusb_ctx *ctx, freenect_usb_context *usb_ctx);
 int fnusb_shutdown(fnusb_ctx *ctx);
 int fnusb_process_events(fnusb_ctx *ctx);
@@ -88,6 +95,9 @@ int fnusb_start_iso(fnusb_dev *dev, fnusb_isoc_stream *strm, fnusb_iso_cb cb, in
 int fnusb_stop_iso(fnusb_dev *dev, fnusb_isoc_stream *strm);
 
 int fnusb_control(fnusb_dev *dev, uint8_t bmRequestType, uint8_t bRequest, uint16_t wValue, uint16_t wIndex, uint8_t *data, uint16_t wLength);
-
+#ifdef BUILD_AUDIO
+int fnusb_bulk(fnusb_dev *dev, uint8_t endpoint, uint8_t *data, int len, int *transferred);
+int fnusb_num_interfaces(fnusb_dev *dev);
+#endif
 
 #endif

@@ -72,19 +72,11 @@ static int alloc_buffer_ring_video(freenect_video_format fmt, buffer_ring_t *buf
 	int sz, i;
 	switch (fmt) {
 		case FREENECT_VIDEO_RGB:
-			sz = FREENECT_VIDEO_RGB_SIZE;
-			break;
 		case FREENECT_VIDEO_BAYER:
-			sz = FREENECT_VIDEO_BAYER_SIZE;
-			break;
 		case FREENECT_VIDEO_IR_8BIT:
-			sz = FREENECT_VIDEO_IR_8BIT_SIZE;
-			break;
 		case FREENECT_VIDEO_IR_10BIT:
-			sz = FREENECT_VIDEO_IR_10BIT;
-			break;
 		case FREENECT_VIDEO_IR_10BIT_PACKED:
-			sz = FREENECT_VIDEO_IR_10BIT_PACKED_SIZE;
+			sz = freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, fmt).bytes;
 			break;
 		default:
 			printf("Invalid video format %d\n", fmt);
@@ -103,16 +95,10 @@ static int alloc_buffer_ring_depth(freenect_depth_format fmt, buffer_ring_t *buf
 	int sz, i;
 	switch (fmt) {
 		case FREENECT_DEPTH_11BIT:
-			sz = FREENECT_DEPTH_11BIT_SIZE;
-			break;
 		case FREENECT_DEPTH_10BIT:
-			sz = FREENECT_DEPTH_10BIT_SIZE;
-			break;
 		case FREENECT_DEPTH_11BIT_PACKED:
-			sz = FREENECT_DEPTH_11BIT_PACKED_SIZE;
-			break;
 		case FREENECT_DEPTH_10BIT_PACKED:
-			sz = FREENECT_DEPTH_10BIT_PACKED_SIZE;
+			sz = freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, fmt).bytes;
 			break;
 		default:
 			printf("Invalid depth format %d\n", fmt);
@@ -222,6 +208,10 @@ static void init_thread(void)
 {
 	thread_running = 1;
 	freenect_init(&ctx, 0);
+	// We claim both the motor and the camera, because we can't know in advance
+	// which devices the caller will want, and the c_sync interface doesn't
+	// support audio, so there's no reason to claim the device needlessly.
+	freenect_select_subdevices(ctx, (freenect_device_flags)(FREENECT_DEVICE_MOTOR | FREENECT_DEVICE_CAMERA));
 	pthread_create(&thread, NULL, init, NULL);
 }
 
@@ -231,7 +221,7 @@ static int change_video_format(sync_kinect_t *kinect, freenect_video_format fmt)
 	free_buffer_ring(&kinect->video);
 	if (alloc_buffer_ring_video(fmt, &kinect->video))
 		return -1;
-	freenect_set_video_format(kinect->dev, fmt);
+	freenect_set_video_mode(kinect->dev, freenect_find_video_mode(FREENECT_RESOLUTION_MEDIUM, fmt));
 	freenect_set_video_buffer(kinect->dev, kinect->video.bufs[2]);
 	freenect_start_video(kinect->dev);
 	return 0;
@@ -243,7 +233,7 @@ static int change_depth_format(sync_kinect_t *kinect, freenect_depth_format fmt)
 	free_buffer_ring(&kinect->depth);
 	if (alloc_buffer_ring_depth(fmt, &kinect->depth))
 		return -1;
-	freenect_set_depth_format(kinect->dev, fmt);
+	freenect_set_depth_mode(kinect->dev, freenect_find_depth_mode(FREENECT_RESOLUTION_MEDIUM, fmt));
 	freenect_set_depth_buffer(kinect->dev, kinect->depth.bufs[2]);
 	freenect_start_depth(kinect->dev);
 	return 0;
@@ -251,7 +241,7 @@ static int change_depth_format(sync_kinect_t *kinect, freenect_depth_format fmt)
 
 static sync_kinect_t *alloc_kinect(int index)
 {
-	sync_kinect_t *kinect = malloc(sizeof(sync_kinect_t));
+	sync_kinect_t *kinect = (sync_kinect_t*)malloc(sizeof(sync_kinect_t));
 	if (freenect_open_device(ctx, &kinect->dev, index)) {
 		free(kinect);
 		return NULL;
@@ -305,9 +295,9 @@ static int setup_kinect(int index, int fmt, int is_depth)
 	pthread_mutex_lock(&buf->lock);
 	if (buf->fmt != fmt) {
 		if (is_depth)
-			change_depth_format(kinects[index], fmt);
+			change_depth_format(kinects[index], (freenect_depth_format)fmt);
 		else
-			change_video_format(kinects[index], fmt);
+			change_video_format(kinects[index], (freenect_video_format)fmt);
 	}
 	pthread_mutex_unlock(&buf->lock);
 	pthread_mutex_unlock(&runloop_lock);
@@ -328,6 +318,37 @@ static int sync_get(void **data, uint32_t *timestamp, buffer_ring_t *buf)
 	*timestamp = buf->timestamp;
 	pthread_mutex_unlock(&buf->lock);
 	return 0;
+}
+
+
+/* 
+  Use this to make sure the runloop is locked and no one is in it. Then you can
+  call arbitrary functions from libfreenect.h in a safe way. If the kinect with
+  this index has not been initialized yet, then it will try to set it up. If 
+  this function is successful, then you can access kinects[index]. Don't forget
+  to unlock the runloop when you're done.
+  
+  Returns 0 if successful, nonzero if kinect[index] is unvailable
+ */ 
+static int runloop_enter(int index)
+{
+	if (index < 0 || index >= MAX_KINECTS) {
+		printf("Error: Invalid index [%d]\n", index);
+		return -1;
+	}
+	if (!thread_running || !kinects[index])
+		if (setup_kinect(index, FREENECT_DEPTH_11BIT, 1))
+			return -1;
+		
+	pending_runloop_tasks_inc();
+	pthread_mutex_lock(&runloop_lock);
+	return 0;
+}
+
+static void runloop_exit()
+{
+	pthread_mutex_unlock(&runloop_lock);
+	pending_runloop_tasks_dec();
 }
 
 int freenect_sync_get_video(void **video, uint32_t *timestamp, int index, freenect_video_format fmt)
@@ -353,6 +374,29 @@ int freenect_sync_get_depth(void **depth, uint32_t *timestamp, int index, freene
 		if (setup_kinect(index, fmt, 1))
 			return -1;
 	sync_get(depth, timestamp, &kinects[index]->depth);
+	return 0;
+}
+
+int freenect_sync_get_tilt_state(freenect_raw_tilt_state **state, int index)
+{
+	if (runloop_enter(index)) return -1;
+	freenect_update_tilt_state(kinects[index]->dev);
+	*state = freenect_get_tilt_state(kinects[index]->dev);  
+	runloop_exit();
+	return 0;
+}
+
+int freenect_sync_set_tilt_degs(int angle, int index) {
+	if (runloop_enter(index)) return -1;
+	freenect_set_tilt_degs(kinects[index]->dev, angle);
+	runloop_exit();
+	return 0;
+}
+
+int freenect_sync_set_led(freenect_led_options led, int index) {
+	if (runloop_enter(index)) return -1;
+	freenect_set_led(kinects[index]->dev, led);
+	runloop_exit();
 	return 0;
 }
 

@@ -28,23 +28,28 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+
 #include <unistd.h>
 
 #include "freenect_internal.h"
+#ifdef BUILD_AUDIO
+#include "loader.h"
+#endif
 
-int freenect_init(freenect_context **ctx, freenect_usb_context *usb_ctx)
+FREENECTAPI int freenect_init(freenect_context **ctx, freenect_usb_context *usb_ctx)
 {
-	*ctx = malloc(sizeof(freenect_context));
+	*ctx = (freenect_context*)malloc(sizeof(freenect_context));
 	if (!ctx)
 		return -1;
 
 	memset(*ctx, 0, sizeof(freenect_context));
 
 	(*ctx)->log_level = LL_WARNING;
+	(*ctx)->enabled_subdevices = (freenect_device_flags)(FREENECT_DEVICE_MOTOR | FREENECT_DEVICE_CAMERA | FREENECT_DEVICE_AUDIO);
 	return fnusb_init(&(*ctx)->usb, usb_ctx);
 }
 
-int freenect_shutdown(freenect_context *ctx)
+FREENECTAPI int freenect_shutdown(freenect_context *ctx)
 {
 	while (ctx->first) {
 		FN_NOTICE("Device %p open during shutdown, closing...\n", ctx->first);
@@ -56,39 +61,28 @@ int freenect_shutdown(freenect_context *ctx)
 	return 0;
 }
 
-int freenect_process_events(freenect_context *ctx)
+FREENECTAPI int freenect_process_events(freenect_context *ctx)
 {
 	return fnusb_process_events(&ctx->usb);
 }
 
-int freenect_num_devices(freenect_context *ctx)
+FREENECTAPI int freenect_num_devices(freenect_context *ctx)
 {
-	libusb_device **devs; //pointer to pointer of device, used to retrieve a list of devices
-	ssize_t cnt = libusb_get_device_list (ctx->usb.ctx, &devs); //get the list of devices
-
-	if (cnt < 0)
-		return (-1);
-
-	int nr = 0, i = 0;
-	struct libusb_device_descriptor desc;
-	for (i = 0; i < cnt; ++i)
-	{
-		int r = libusb_get_device_descriptor (devs[i], &desc);
-		if (r < 0)
-			continue;
-		if (desc.idVendor == VID_MICROSOFT && desc.idProduct == PID_NUI_CAMERA)
-			nr++;
-	}
-
-	libusb_free_device_list (devs, 1);  // free the list, unref the devices in it
-
-	return (nr);
+	return fnusb_num_devices(&ctx->usb);
 }
 
-int freenect_open_device(freenect_context *ctx, freenect_device **dev, int index)
+FREENECTAPI void freenect_select_subdevices(freenect_context *ctx, freenect_device_flags subdevs) {
+	ctx->enabled_subdevices = (freenect_device_flags)(subdevs & (FREENECT_DEVICE_MOTOR | FREENECT_DEVICE_CAMERA
+#ifdef BUILD_AUDIO
+			| FREENECT_DEVICE_AUDIO
+#endif
+			));
+}
+
+FREENECTAPI int freenect_open_device(freenect_context *ctx, freenect_device **dev, int index)
 {
 	int res;
-	freenect_device *pdev = malloc(sizeof(freenect_device));
+	freenect_device *pdev = (freenect_device*)malloc(sizeof(freenect_device));
 	if (!pdev)
 		return -1;
 
@@ -97,11 +91,37 @@ int freenect_open_device(freenect_context *ctx, freenect_device **dev, int index
 	pdev->parent = ctx;
 
 	res = fnusb_open_subdevices(pdev, index);
-
 	if (res < 0) {
 		free(pdev);
 		return res;
 	}
+#ifdef BUILD_AUDIO
+	if (pdev->usb_audio.dev) {
+		res = fnusb_num_interfaces(&pdev->usb_audio);
+		if (res == 1) {
+			// Upload audio firmware, release devices, and reopen them
+			res = upload_firmware(&pdev->usb_audio);
+			if (res < 0) {
+				FN_ERROR("upload_firmware failed: %d\n", res);
+				free(pdev);
+				return res;
+			}
+
+			res = fnusb_close_subdevices(pdev);
+			if (res < 0) {
+				FN_ERROR("fnusb_close_subdevices failed: %d\n", res);
+				free(pdev);
+				return res;
+			}
+			sleep(1); // Give time for the device to reenumerate before trying to open it
+			res = fnusb_open_subdevices(pdev, index);
+			if (res < 0) {
+				free(pdev);
+				return res;
+			}
+		}
+	}
+#endif
 
 	if (!ctx->first) {
 		ctx->first = pdev;
@@ -116,7 +136,7 @@ int freenect_open_device(freenect_context *ctx, freenect_device **dev, int index
 	return 0;
 }
 
-int freenect_close_device(freenect_device *dev)
+FREENECTAPI int freenect_close_device(freenect_device *dev)
 {
 	freenect_context *ctx = dev->parent;
 	int res;
@@ -153,22 +173,22 @@ int freenect_close_device(freenect_device *dev)
 	return 0;
 }
 
-void freenect_set_user(freenect_device *dev, void *user)
+FREENECTAPI void freenect_set_user(freenect_device *dev, void *user)
 {
 	dev->user_data = user;
 }
 
-void *freenect_get_user(freenect_device *dev)
+FREENECTAPI void *freenect_get_user(freenect_device *dev)
 {
 	return dev->user_data;
 }
 
-void freenect_set_log_level(freenect_context *ctx, freenect_loglevel level)
+FREENECTAPI void freenect_set_log_level(freenect_context *ctx, freenect_loglevel level)
 {
 	ctx->log_level = level;
 }
 
-void freenect_set_log_callback(freenect_context *ctx, freenect_log_cb cb)
+FREENECTAPI void freenect_set_log_callback(freenect_context *ctx, freenect_log_cb cb)
 {
 	ctx->log_cb = cb;
 }
