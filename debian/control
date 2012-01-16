@@ -12,7 +12,7 @@ Homepage: http://openkinect.org/
 Package: libfreenect0.0
 Section: libs
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libusb-1.0-0, udev
+Depends: ${shlibs:Depends}, ${misc:Depends}, udev
 Conflicts: libfreenect
 Description: library for accessing Kinect USB camera
  libfreenect is the core library for accessing the Microsoft Kinect
@@ -36,7 +36,7 @@ Description: library for accessing Kinect USB camera -- development files
 Package: libfreenect-demos
 Section: libdevel
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libusb-1.0-0, libglut3
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: library for accessing Kinect USB camera -- demonstrations
  libfreenect is the core library for accessing the Microsoft Kinect USB camera.
  .
