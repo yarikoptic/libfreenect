@@ -1,0 +1,17 @@
+Description: Install header files into include, not in include/<subfolder>
+Forwarded: no
+Author: arnebe <arne@alamut.de> 
+
+--- libfreenect-0.0.1+20101211+2.orig/cmake_modules/SetupDirectories.cmake
++++ libfreenect-0.0.1+20101211+2/cmake_modules/SetupDirectories.cmake
+@@ -9,7 +9,8 @@ MESSAGE (STATUS "${PROJECT_NAME} will be
+ 
+ # Installation prefix for include files
+ STRING (TOLOWER ${PROJECT_NAME} projectNameLower)
+-SET (PROJECT_INCLUDE_INSTALL_DIR "include/${projectNameLower}")
++#SET (PROJECT_INCLUDE_INSTALL_DIR "include/${projectNameLower}")
++SET (PROJECT_INCLUDE_INSTALL_DIR "include")
+ 
+ IF (PROJECT_PROC_64BIT)
+     SET (LIB_SUFFIX "64" CACHE STRING "Suffix for library installation directory")
+

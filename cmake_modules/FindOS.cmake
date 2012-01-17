@@ -47,7 +47,7 @@ ENDIF (PROJECT_OS_LINUX)
 MESSAGE (STATUS "Got System Processor ${CMAKE_SYSTEM_PROCESSOR}")
 
 # 32 or 64 bit Linux
-IF (FALSE) # PROJECT_OS_LINUX)
+IF (PROJECT_OS_LINUX)
     # Set the library directory suffix accordingly
     IF (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
         SET (PROJECT_PROC_64BIT TRUE BOOL INTERNAL)

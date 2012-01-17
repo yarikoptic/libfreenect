@@ -1,0 +1,11 @@
+Description: install fakenect/README into share/doc as README.fakenect
+Forwarded: No
+Author: arnebe <arne@alamut.de> 
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -170,3 +170,4 @@
+ 
+ ENDIF ( BUILD_CPACK )
+ 
++  INSTALL(FILES "fakenect/README" DESTINATION "share/doc/" RENAME "README.fakenect")

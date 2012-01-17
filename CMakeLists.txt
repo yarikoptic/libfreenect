@@ -53,7 +53,6 @@ OPTION(BUILD_FAKENECT "Build fakenect mock library" ON)
 OPTION(BUILD_C_SYNC "Build c synchronous library" ON)
 OPTION(BUILD_CV "Build OpenCV wrapper" OFF)
 OPTION(BUILD_AS3_SERVER "Build the Actionscript 3 Server Example" OFF)
-OPTION(BUILD_PYTHON "Build Python extension" OFF)
 IF(PROJECT_OS_LINUX)
 	OPTION(BUILD_CPACK "Build an RPM or DEB using CPack" OFF)
 ENDIF(PROJECT_OS_LINUX)
@@ -128,10 +127,6 @@ IF(BUILD_AS3_SERVER)
   add_subdirectory(wrappers/actionscript)
 ENDIF()
 
-IF(BUILD_PYTHON)
-  add_subdirectory (wrappers/python)
-ENDIF()
-
 ######################################################################################
 # Extras
 ######################################################################################
@@ -166,6 +161,7 @@ IF ( BUILD_CPACK )
 
   include(CPack)
 
+  INSTALL(FILES "${CMAKE_BINARY_DIR}/lib/libfreenect.a" DESTINATION ${PROJECT_LIBRARY_INSTALL_DIR})
   INSTALL(FILES "include/libfreenect.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
   INSTALL(FILES "APACHE20" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
   INSTALL(FILES "GPL2" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
@@ -174,4 +170,3 @@ IF ( BUILD_CPACK )
 
 ENDIF ( BUILD_CPACK )
 
-  INSTALL(FILES "fakenect/README" DESTINATION "share/doc/" RENAME "README.fakenect")

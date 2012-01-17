@@ -1,0 +1,4 @@
+rename-readme-fakenect.patch
+introduce-wrappers-python-into-build.patch
+dont-postfix-to-install-libdir.patch
+dont-install-into-include-subfolder.patch

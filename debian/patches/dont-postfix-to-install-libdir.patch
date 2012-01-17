@@ -1,0 +1,16 @@
+Description: Install libraries in the default libdir folder
+ Do not postfix 64 in install libdir
+Author: arnebe <arne@alamut.de> 
+Forwarded: no
+
+--- libfreenect-0.0.1+20101211+2.orig/cmake_modules/FindOS.cmake
++++ libfreenect-0.0.1+20101211+2/cmake_modules/FindOS.cmake
+@@ -47,7 +47,7 @@ ENDIF (PROJECT_OS_LINUX)
+ MESSAGE (STATUS "Got System Processor ${CMAKE_SYSTEM_PROCESSOR}")
+ 
+ # 32 or 64 bit Linux
+-IF (PROJECT_OS_LINUX)
++IF (FALSE) # PROJECT_OS_LINUX)
+     # Set the library directory suffix accordingly
+     IF (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+         SET (PROJECT_PROC_64BIT TRUE BOOL INTERNAL)
