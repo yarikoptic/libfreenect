@@ -166,7 +166,6 @@ IF ( BUILD_CPACK )
 
   include(CPack)
 
-  INSTALL(FILES "udev/51-kinect.rules" DESTINATION "../lib/udev/rules.d/" RENAME "51-libfreenect.rules")
   INSTALL(FILES "include/libfreenect.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
   INSTALL(FILES "APACHE20" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
   INSTALL(FILES "GPL2" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
@@ -176,4 +175,3 @@ IF ( BUILD_CPACK )
 ENDIF ( BUILD_CPACK )
 
   INSTALL(FILES "fakenect/README" DESTINATION "share/doc/" RENAME "README.fakenect")
-  INSTALL(FILES "platform/linux/udev/51-kinect.rules" DESTINATION "../lib/udev/rules.d/" RENAME "51-libfreenect.rules")
