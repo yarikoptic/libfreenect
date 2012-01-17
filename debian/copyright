@@ -25,10 +25,6 @@ License: Apache-2 or GPL-2
   .
   Binary distributions must follow the binary distribution requirements
   of either License.
-  .
-  On Debian systems, the complete text of the GNU General
-  Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
-  The Apache License is found in `/usr/share/common-licenses/Apache-2.0'
 
 Files: cmake_modules/Findlibusb-1.0.cmake
 Copyright: 2006, Andreas Schneider <mail@cynapses.org>
@@ -65,3 +61,8 @@ Files: debian/*
 Copyright: 2010, arne <arne@alamut.de>
            2010-2011, Yaroslav Halchenko <debian@onerussian.com>
 License: GPL-2
+
+License: GPL-2
+  On Debian systems, the complete text of the GNU General
+  Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+  The Apache License is found in `/usr/share/common-licenses/Apache-2.0'

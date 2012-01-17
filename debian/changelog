@@ -4,7 +4,11 @@ libfreenect (1:0.0.1+20101211+2-3) unstable; urgency=low
   * [03039eb] Remove useless explicit dependencies (e.g. libglut3) of
     binary packages
 
- -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 16 Jan 2012 19:33:37 -0500
+  [ Yaroslav Halchenko]
+  * Moved GPL-2 license stud to a separate paragraph
+  * Boosted policy compliance to 3.9.2 -- no changes
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 16 Jan 2012 19:36:51 -0500
 
 libfreenect (1:0.0.1+20101211+2-2) unstable; urgency=low
 

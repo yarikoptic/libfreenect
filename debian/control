@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Arne Bernin <arne@alamut.de>
 Uploaders: Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
 Build-Depends: debhelper (>= 7), libusb-1.0-0-dev, freeglut3-dev | libglut3-dev, cdbs, cmake,  pkg-config, libxmu-dev, libxi-dev, python-dev, cython, python-numpy
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
 Vcs-Git: git://github.com/arnebe/libfreenect.git
 Vcs-Browser: https://github.com/arnebe/libfreenect
 Homepage: http://openkinect.org/
