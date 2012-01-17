@@ -7,6 +7,7 @@ libfreenect (1:0.0.1+20101211+2-3) unstable; urgency=low
   [ Yaroslav Halchenko]
   * Moved GPL-2 license stud to a separate paragraph
   * Boosted policy compliance to 3.9.2 -- no changes
+  * Moved numpy into Depends from Suggests (Closes: #641792)
 
  -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 16 Jan 2012 19:36:51 -0500
 

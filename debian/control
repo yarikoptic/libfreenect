@@ -46,8 +46,10 @@ Description: library for accessing Kinect USB camera -- demonstrations
 Package: python-freenect
 Section: python
 Architecture: any
-Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends}, libfreenect0.0
-Suggests: python-numpy, python-matplotlib, python-opencv
+Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends},
+         libfreenect0.0,
+         python-numpy
+Suggests: python-matplotlib, python-opencv
 Description: library for accessing Kinect USB camera -- Python bindings
  libfreenect is the core library for accessing the Microsoft Kinect
  USB camera.
