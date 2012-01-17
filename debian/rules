@@ -12,3 +12,6 @@ install/libfreenect-demos::
 	mv debian/tmp/usr/bin/glview debian/tmp/usr/bin/freenect-glview
 	mv debian/tmp/usr/bin/glpclview debian/tmp/usr/bin/freenect-glpclview
 	mv debian/tmp/usr/bin/cppview debian/tmp/usr/bin/freenect-cppview
+
+binary-install/python-freenect::
+	dh_pysupport
