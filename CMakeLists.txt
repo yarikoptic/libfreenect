@@ -48,19 +48,18 @@ set (PROJECT_VER
 set (PROJECT_APIVER 
   "${PROJECT_VER_MAJOR}.${PROJECT_VER_MINOR}")
 
+OPTION(BUILD_AUDIO "Build audio support" OFF)
+OPTION(BUILD_REDIST_PACKAGE "Build libfreenect in a legally-redistributable manner (only affects audio)" OFF)
 OPTION(BUILD_EXAMPLES "Build example programs" ON)
 OPTION(BUILD_FAKENECT "Build fakenect mock library" ON)
 OPTION(BUILD_C_SYNC "Build c synchronous library" ON)
+OPTION(BUILD_CPP "Build C++ Library (currently header only)" ON)
 OPTION(BUILD_CV "Build OpenCV wrapper" OFF)
 OPTION(BUILD_AS3_SERVER "Build the Actionscript 3 Server Example" OFF)
+OPTION(BUILD_PYTHON "Build Python extension" OFF)
 IF(PROJECT_OS_LINUX)
 	OPTION(BUILD_CPACK "Build an RPM or DEB using CPack" OFF)
 ENDIF(PROJECT_OS_LINUX)
-
-# Doesn't work on windows yet.
-IF(NOT UNIX)
-  MESSAGE(FATAL_ERROR "libfreenect is not currently supported on this platform")
-ENDIF()
 
 ######################################################################################
 # CMake Modules
@@ -83,6 +82,10 @@ if(BIG_ENDIAN)
   add_definitions(-DFN_BIGENDIAN)
 endif()
 
+if(BUILD_AUDIO)
+  add_definitions(-DBUILD_AUDIO)
+endif()
+
 ######################################################################################
 # CMake 
 ######################################################################################
@@ -103,6 +106,11 @@ include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
 # libfreenect.h includes libusb.h, so everyone needs this too
 include_directories(${LIBUSB_1_INCLUDE_DIRS})
 
+if(WIN32)
+  include_directories("${CMAKE_CURRENT_SOURCE_DIR}/platform/windows")
+  include_directories("${CMAKE_CURRENT_SOURCE_DIR}/platform/windows/libusb10emu")
+endif()
+
 # Add library project
 add_subdirectory (src)
 
@@ -119,12 +127,20 @@ IF(BUILD_C_SYNC)
   add_subdirectory (wrappers/c_sync)
 ENDIF()
 
+IF(BUILD_CPP)
+  add_subdirectory (wrappers/cpp)
+ENDIF()
+
 IF(BUILD_CV)
   add_subdirectory (wrappers/opencv)
 ENDIF()
 
 IF(BUILD_AS3_SERVER)
   add_subdirectory(wrappers/actionscript)
+ENDIF()
+
+IF(BUILD_PYTHON)
+  add_subdirectory (wrappers/python)
 ENDIF()
 
 ######################################################################################
@@ -162,11 +178,13 @@ IF ( BUILD_CPACK )
   include(CPack)
 
   INSTALL(FILES "${CMAKE_BINARY_DIR}/lib/libfreenect.a" DESTINATION ${PROJECT_LIBRARY_INSTALL_DIR})
+  if (BUILD_AUDIO)
+    INSTALL(FILES "include/libfreenect-audio.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
+  endif()
   INSTALL(FILES "include/libfreenect.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
   INSTALL(FILES "APACHE20" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
   INSTALL(FILES "GPL2" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
   INSTALL(FILES "README.asciidoc" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
-  INSTALL(FILES "doc/kinect_protocol.asciidoc" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
 
 ENDIF ( BUILD_CPACK )
 

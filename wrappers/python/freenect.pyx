@@ -43,6 +43,32 @@ LED_YELLOW = 3
 LED_BLINK_YELLOW = 4
 LED_BLINK_GREEN = 5
 LED_BLINK_RED_YELLOW = 6
+RESOLUTION_LOW = 0
+RESOLUTION_MEDIUM = 1
+RESOLUTION_HIGH = 2
+DEVICE_MOTOR = 1
+DEVICE_CAMERA = 2
+DEVICE_AUDIO = 4
+
+
+cdef struct freenect_raw_tilt_state:
+    short accelerometer_x
+    short accelerometer_y
+    short accelerometer_z
+    char tilt_angle
+    int tilt_status
+
+ctypedef struct freenect_frame_mode:
+    int reserved
+    int resolution
+    int pixel_format
+    int nbytes
+    short width
+    short height
+    char data_bits_per_pixel
+    char padding_bits_per_pixel
+    char framerate
+    char is_valid
 
 cdef extern from "numpy/arrayobject.h":
     void import_array()
@@ -68,12 +94,24 @@ cdef extern from "libfreenect.h":
     int freenect_shutdown(void *ctx)
     int freenect_process_events(void *ctx)
     int freenect_num_devices(void *ctx)
+    int freenect_select_subdevices(void *ctx, int subdevs)
     int freenect_open_device(void *ctx, void **dev, int index)
     int freenect_close_device(void *dev)
     void freenect_set_depth_callback(void *dev, freenect_depth_cb cb)
     void freenect_set_video_callback(void *dev, freenect_video_cb cb)
-    int freenect_set_video_format(void *dev, int fmt)
-    int freenect_set_depth_format(void *dev, int fmt)
+
+    int freenect_get_video_mode_count()
+    freenect_frame_mode freenect_get_video_mode(int mode_num)
+    freenect_frame_mode freenect_get_current_video_mode(void *dev)
+    freenect_frame_mode freenect_find_video_mode(int res, int fmt)
+    int freenect_set_video_mode(void *dev, freenect_frame_mode mode)
+
+    int freenect_get_depth_mode_count()
+    freenect_frame_mode freenect_get_depth_mode(int mode_num)
+    freenect_frame_mode freenect_get_current_depth_mode(void *dev)
+    freenect_frame_mode freenect_find_depth_mode(int res, int fmt)
+    int freenect_set_depth_mode(void *dev, freenect_frame_mode mode)
+
     int freenect_start_depth(void *dev)
     int freenect_start_video(void *dev)
     int freenect_stop_depth(void *dev)
@@ -81,9 +119,9 @@ cdef extern from "libfreenect.h":
     int freenect_set_tilt_degs(void *dev, double angle)
     int freenect_set_led(void *dev, int option)
     int freenect_update_tilt_state(void *dev)
-    void* freenect_get_tilt_state(void *dev)
-    void freenect_get_mks_accel(void *state, double* x, double* y, double* z)
-    double freenect_get_tilt_degs(void *state)
+    freenect_raw_tilt_state* freenect_get_tilt_state(void *dev)
+    void freenect_get_mks_accel(freenect_raw_tilt_state *state, double* x, double* y, double* z)
+    double freenect_get_tilt_degs(freenect_raw_tilt_state *state)
 
 cdef class DevPtr:
     cdef void* _ptr 
@@ -96,15 +134,36 @@ cdef class CtxPtr:
         return "<Ctx Pointer>"
 
 cdef class StatePtr:
-    cdef void* _ptr 
+    cdef freenect_raw_tilt_state* _ptr 
     def __repr__(self): 
         return "<State Pointer>"
+    
+    def _get_accelx(self):
+        return int(cython.operator.dereference(self._ptr).accelerometer_x)
 
-def set_video_format(DevPtr dev, int fmt):
-    return freenect_set_video_format(dev._ptr, fmt)
+    def _get_accely(self):
+        return int(cython.operator.dereference(self._ptr).accelerometer_y)
 
-def set_depth_format(DevPtr dev, int fmt):
-    return freenect_set_depth_format(dev._ptr, fmt)
+    def _get_accelz(self):
+        return int(cython.operator.dereference(self._ptr).accelerometer_z)
+
+    def _get_tilt_angle(self):
+        return int(cython.operator.dereference(self._ptr).tilt_angle)
+
+    def _get_tilt_status(self):
+        return int(cython.operator.dereference(self._ptr).tilt_status)
+    
+    accelerometer_x = property(_get_accelx)
+    accelerometer_y = property(_get_accely)
+    accelerometer_z = property(_get_accelz)
+    tilt_angle = property(_get_tilt_angle)
+    tilt_status = property(_get_tilt_status)
+
+def set_depth_mode(DevPtr dev, int res, int mode):
+    return freenect_set_depth_mode(dev._ptr, freenect_find_depth_mode(res, mode))
+
+def set_video_mode(DevPtr dev, int res, int mode):
+    return freenect_set_video_mode(dev._ptr, freenect_find_video_mode(res, mode))
 
 def start_depth(DevPtr dev):
     return freenect_start_depth(dev._ptr)
@@ -140,7 +199,7 @@ def update_tilt_state(DevPtr dev):
     return freenect_update_tilt_state(dev._ptr)
 
 def get_tilt_state(DevPtr dev):
-    cdef void* state = freenect_get_tilt_state(dev._ptr)
+    cdef freenect_raw_tilt_state* state = freenect_get_tilt_state(dev._ptr)
     cdef StatePtr state_out
     state_out = StatePtr()
     state_out._ptr = state
@@ -175,6 +234,11 @@ cdef init():
     cdef void* ctx
     if freenect_init(cython.address(ctx), 0) < 0:
         return
+    # We take both the motor and camera devices here, since we provide access
+    # to both but haven't wrapped the python API for selecting subdevices yet.
+    # Also, we don't support audio in the python wrapper yet, so no sense claiming
+    # the device.
+    freenect_select_subdevices(ctx, DEVICE_MOTOR | DEVICE_CAMERA)
     cdef CtxPtr ctx_out
     ctx_out = CtxPtr()
     ctx_out._ptr = ctx
@@ -245,9 +309,9 @@ def runloop(depth=None, video=None, body=None):
         return
     devp = dev._ptr
     ctxp = ctx._ptr
-    freenect_set_depth_format(devp, 0)
+    freenect_set_depth_mode(devp, freenect_find_depth_mode(RESOLUTION_MEDIUM, 0))
     freenect_start_depth(devp)
-    freenect_set_video_format(devp, VIDEO_RGB)
+    freenect_set_video_mode(devp, freenect_find_video_mode(RESOLUTION_MEDIUM, VIDEO_RGB))
     freenect_start_video(devp)
     freenect_set_depth_callback(devp, depth_cb)
     freenect_set_video_callback(devp, video_cb)
