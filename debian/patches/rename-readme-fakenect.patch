@@ -4,7 +4,7 @@ Author: arnebe <arne@alamut.de>
 
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -170,3 +170,4 @@
+@@ -188,3 +188,4 @@
  
  ENDIF ( BUILD_CPACK )
  
