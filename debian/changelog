@@ -1,4 +1,4 @@
-libfreenect (1:0.1.1+dfsg-1) unstable; urgency=low
+libfreenect (1:0.1.1+dfsg-1~pre1) UNRELEASED; urgency=low
 
   * New upstream release (Closes: #653501)
   * Use libfreenect.0.0.udev file instead of custom install and postinst
