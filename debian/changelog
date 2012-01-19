@@ -10,8 +10,10 @@ libfreenect (1:0.1.1+dfsg-1~pre1) UNRELEASED; urgency=low
       - New patch rename-readme-fakenect.patch
   * Add remove-libusb-include-from-exported-header.patch to drop the
     dependency of libfreenect-dev on libusb-1.0-dev.
+  * Add correct-libusb-search-and-include.patch to adjust libusb include
+    statements and fix cmake test of libusb.
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Thu, 19 Jan 2012 11:33:27 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Thu, 19 Jan 2012 11:41:05 +0100
 
 libfreenect (1:0.0.1+20101211+2-4~pre1) UNRELEASED; urgency=low
 
