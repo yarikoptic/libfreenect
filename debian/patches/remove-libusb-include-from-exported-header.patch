@@ -1,0 +1,28 @@
+Description: Remove libusb.h include from exported header
+ Instead of declaring freenect_usb_context as libusb_context, declare it as
+ void. In the first place, it was not necessary since it is always passed as
+ pointer to the API and was already void on Win32. Secondly this fixes the
+ problem of discrepancy between the include path of libusb on freebsd and
+ the other architectures.
+Origin: vendor
+Forwarded: https://github.com/OpenKinect/libfreenect/pull/265
+Author: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
+Last-Update: 2012-01-19
+
+--- a/include/libfreenect.h
++++ b/include/libfreenect.h
+@@ -136,13 +136,7 @@
+ typedef struct _freenect_device freenect_device; /**< Holds device information. */
+ 
+ // usb backend specific section
+-#ifdef _WIN32
+-  /* frees Windows users of the burden of specifying the path to <libusb-1.0/libusb.h> */
+-  typedef void freenect_usb_context;
+-#else
+-  #include <libusb-1.0/libusb.h>
+-  typedef libusb_context freenect_usb_context; /**< Holds libusb-1.0 specific information */
+-#endif
++typedef void freenect_usb_context; /**< Holds libusb-1.0 context */
+ //
+ 
+ /// If Win32, export all functions for DLL usage

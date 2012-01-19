@@ -1,3 +1,4 @@
 rename-readme-fakenect.patch
 dont-postfix-to-install-libdir.patch
 dont-install-into-include-subfolder.patch
+remove-libusb-include-from-exported-header.patch

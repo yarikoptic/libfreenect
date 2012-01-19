@@ -25,7 +25,7 @@ Description: library for accessing Kinect USB camera
 Package: libfreenect-dev
 Section: libdevel
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libusb-1.0-0-dev, libfreenect0.0 (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, libfreenect0.0 (= ${binary:Version})
 Description: library for accessing Kinect USB camera -- development files
  libfreenect is the core library for accessing the Microsoft Kinect
  USB camera.
