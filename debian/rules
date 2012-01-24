@@ -12,6 +12,9 @@ override_dh_auto_install:
 	mv debian/tmp/usr/bin/glview debian/tmp/usr/bin/freenect-glview
 	mv debian/tmp/usr/bin/glpclview debian/tmp/usr/bin/freenect-glpclview
 	mv debian/tmp/usr/bin/cppview debian/tmp/usr/bin/freenect-cppview
+	mv debian/tmp/usr/bin/hiview debian/tmp/usr/bin/freenect-hiview
+	mv debian/tmp/usr/bin/record debian/tmp/usr/bin/freenect-record
+	mv debian/tmp/usr/bin/tiltdemo debian/tmp/usr/bin/freenect-tiltdemo
 
 override_dh_installdocs:
 	dh_installdocs --all CONTRIB
