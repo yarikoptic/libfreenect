@@ -1,0 +1,20 @@
+Description: Update the library SONAME to libfreenect0.1
+ Upstream had make uncompatible change with the previous version but did not
+ updated the library version. This patch update the minor number as it
+ should have been. 
+Origin: vendor
+Forwarded: No (upstream has corrected the other versions)
+Author: nicolas bourdaud <nicolas.bourdaud@gmail.com>
+Last-Update: 2012-01-24
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -41,7 +41,7 @@
+ PROJECT(libfreenect)
+ 
+ set (PROJECT_VER_MAJOR 0)
+-set (PROJECT_VER_MINOR 0)
++set (PROJECT_VER_MINOR 1)
+ set (PROJECT_VER_PATCH 1)
+ set (PROJECT_VER 
+   "${PROJECT_VER_MAJOR}.${PROJECT_VER_MINOR}.${PROJECT_VER_PATCH}")

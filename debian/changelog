@@ -13,8 +13,10 @@ libfreenect (1:0.1.1+dfsg-1~pre1) UNRELEASED; urgency=low
   * Add correct-libusb-search-and-include.patch to adjust libusb include
     statements and fix cmake test of libusb.
   * Switch from cdbs to dh
+  * Update SONAME from libfreenect0.0 to libfreenect0.1. This requires a
+    new patch: update-soname.patch
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 24 Jan 2012 19:12:21 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 24 Jan 2012 19:44:52 +0100
 
 libfreenect (1:0.0.1+20101211+2-4~pre1) UNRELEASED; urgency=low
 
