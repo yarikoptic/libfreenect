@@ -11,7 +11,7 @@ Last-Update: 2012-01-19
 
 --- a/include/libfreenect.h
 +++ b/include/libfreenect.h
-@@ -136,13 +136,7 @@
+@@ -156,13 +156,7 @@
  typedef struct _freenect_device freenect_device; /**< Holds device information. */
  
  // usb backend specific section

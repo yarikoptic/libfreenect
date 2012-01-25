@@ -39,21 +39,21 @@ Last-Update: 2012-01-19
 +endif (LIBUSB_1_LIBRARIES AND LIBUSB_1_INCLUDE_DIRS)
 --- a/src/usb_libusb10.c
 +++ b/src/usb_libusb10.c
-@@ -28,7 +28,7 @@
- #include <stdbool.h>
+@@ -29,7 +29,7 @@
  #include <stdlib.h>
  #include <string.h>
+ #include <unistd.h>
 -#include <libusb-1.0/libusb.h>
 +#include <libusb.h>
  #include "freenect_internal.h"
+ #include "loader.h"
  
- int fnusb_num_devices(fnusb_ctx *ctx)
 --- a/src/usb_libusb10.h
 +++ b/src/usb_libusb10.h
-@@ -27,7 +27,7 @@
- #ifndef USB_LIBUSB10
+@@ -28,7 +28,7 @@
  #define USB_LIBUSB10
  
+ #include "libfreenect.h"
 -#include <libusb-1.0/libusb.h>
 +#include <libusb.h>
  
