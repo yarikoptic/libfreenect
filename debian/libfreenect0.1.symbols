@@ -3,15 +3,25 @@ libfreenect.so.0.1 libfreenect0.1 #MINVER#
  fnusb_close_subdevices@Base 1:0.1.1
  fnusb_control@Base 1:0.1.1
  fnusb_init@Base 1:0.1.1
+ fnusb_list_device_attributes@Base 1:0.1.2
  fnusb_num_devices@Base 1:0.1.1
  fnusb_open_subdevices@Base 1:0.1.1
  fnusb_process_events@Base 1:0.1.1
+ fnusb_process_events_timeout@Base 1:0.1.2
  fnusb_shutdown@Base 1:0.1.1
  fnusb_start_iso@Base 1:0.1.1
  fnusb_stop_iso@Base 1:0.1.1
+ freenect_apply_depth_to_mm@Base 1:0.1.2
+ freenect_apply_registration@Base 1:0.1.2
+ freenect_camera_init@Base 1:0.1.2
+ freenect_camera_teardown@Base 1:0.1.2
+ freenect_camera_to_world@Base 1:0.1.2
  freenect_close_device@Base 1:0.1.1
+ freenect_copy_registration@Base 1:0.1.2
+ freenect_destroy_registration@Base 1:0.1.2
  freenect_find_depth_mode@Base 1:0.1.1
  freenect_find_video_mode@Base 1:0.1.1
+ freenect_free_device_attributes@Base 1:0.1.2
  freenect_get_current_depth_mode@Base 1:0.1.1
  freenect_get_current_video_mode@Base 1:0.1.1
  freenect_get_depth_mode@Base 1:0.1.1
@@ -24,9 +34,13 @@ libfreenect.so.0.1 libfreenect0.1 #MINVER#
  freenect_get_video_mode@Base 1:0.1.1
  freenect_get_video_mode_count@Base 1:0.1.1
  freenect_init@Base 1:0.1.1
+ freenect_init_registration@Base 1:0.1.2
+ freenect_list_device_attributes@Base 1:0.1.2
  freenect_num_devices@Base 1:0.1.1
  freenect_open_device@Base 1:0.1.1
+ freenect_open_device_by_camera_serial@Base 1:0.1.2
  freenect_process_events@Base 1:0.1.1
+ freenect_process_events_timeout@Base 1:0.1.2
  freenect_select_subdevices@Base 1:0.1.1
  freenect_set_depth_buffer@Base 1:0.1.1
  freenect_set_depth_callback@Base 1:0.1.1
@@ -44,9 +58,14 @@ libfreenect.so.0.1 libfreenect0.1 #MINVER#
  freenect_start_video@Base 1:0.1.1
  freenect_stop_depth@Base 1:0.1.1
  freenect_stop_video@Base 1:0.1.1
+ freenect_supported_subdevices@Base 1:0.1.2
  freenect_update_tilt_state@Base 1:0.1.1
+ parameter_coefficient@Base 1:0.1.2
+ pixel_size_factor@Base 1:0.1.2
+ shift_scale@Base 1:0.1.2
  supported_depth_modes@Base 1:0.1.1
  supported_video_modes@Base 1:0.1.1
+ unpack_8_pixels@Base 1:0.1.2
 libfreenect_sync.so.0.1 libfreenect0.1 #MINVER#
  freenect_sync_get_depth@Base 1:0.1.1
  freenect_sync_get_tilt_state@Base 1:0.1.1
