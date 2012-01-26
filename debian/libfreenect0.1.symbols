@@ -1,20 +1,20 @@
 libfreenect.so.0.1 libfreenect0.1 #MINVER#
- fn_log@Base 1:0.1.1
- fnusb_close_subdevices@Base 1:0.1.1
- fnusb_control@Base 1:0.1.1
- fnusb_init@Base 1:0.1.1
- fnusb_list_device_attributes@Base 1:0.1.2
- fnusb_num_devices@Base 1:0.1.1
- fnusb_open_subdevices@Base 1:0.1.1
- fnusb_process_events@Base 1:0.1.1
- fnusb_process_events_timeout@Base 1:0.1.2
- fnusb_shutdown@Base 1:0.1.1
- fnusb_start_iso@Base 1:0.1.1
- fnusb_stop_iso@Base 1:0.1.1
- freenect_apply_depth_to_mm@Base 1:0.1.2
- freenect_apply_registration@Base 1:0.1.2
- freenect_camera_init@Base 1:0.1.2
- freenect_camera_teardown@Base 1:0.1.2
+ (optional)fn_log@Base 1:0.1.1
+ (optional)fnusb_close_subdevices@Base 1:0.1.1
+ (optional)fnusb_control@Base 1:0.1.1
+ (optional)fnusb_init@Base 1:0.1.1
+ (optional)fnusb_list_device_attributes@Base 1:0.1.2
+ (optional)fnusb_num_devices@Base 1:0.1.1
+ (optional)fnusb_open_subdevices@Base 1:0.1.1
+ (optional)fnusb_process_events@Base 1:0.1.1
+ (optional)fnusb_process_events_timeout@Base 1:0.1.2
+ (optional)fnusb_shutdown@Base 1:0.1.1
+ (optional)fnusb_start_iso@Base 1:0.1.1
+ (optional)fnusb_stop_iso@Base 1:0.1.1
+ (optional)freenect_apply_depth_to_mm@Base 1:0.1.2
+ (optional)freenect_apply_registration@Base 1:0.1.2
+ (optional)freenect_camera_init@Base 1:0.1.2
+ (optional)freenect_camera_teardown@Base 1:0.1.2
  freenect_camera_to_world@Base 1:0.1.2
  freenect_close_device@Base 1:0.1.1
  freenect_copy_registration@Base 1:0.1.2
@@ -34,7 +34,7 @@ libfreenect.so.0.1 libfreenect0.1 #MINVER#
  freenect_get_video_mode@Base 1:0.1.1
  freenect_get_video_mode_count@Base 1:0.1.1
  freenect_init@Base 1:0.1.1
- freenect_init_registration@Base 1:0.1.2
+ (optional)freenect_init_registration@Base 1:0.1.2
  freenect_list_device_attributes@Base 1:0.1.2
  freenect_num_devices@Base 1:0.1.1
  freenect_open_device@Base 1:0.1.1
@@ -60,12 +60,12 @@ libfreenect.so.0.1 libfreenect0.1 #MINVER#
  freenect_stop_video@Base 1:0.1.1
  freenect_supported_subdevices@Base 1:0.1.2
  freenect_update_tilt_state@Base 1:0.1.1
- parameter_coefficient@Base 1:0.1.2
- pixel_size_factor@Base 1:0.1.2
- shift_scale@Base 1:0.1.2
- supported_depth_modes@Base 1:0.1.1
- supported_video_modes@Base 1:0.1.1
- unpack_8_pixels@Base 1:0.1.2
+ (optional)parameter_coefficient@Base 1:0.1.2
+ (optional)pixel_size_factor@Base 1:0.1.2
+ (optional)shift_scale@Base 1:0.1.2
+ (optional)supported_depth_modes@Base 1:0.1.1
+ (optional)supported_video_modes@Base 1:0.1.1
+ (optional)unpack_8_pixels@Base 1:0.1.2
 libfreenect_sync.so.0.1 libfreenect0.1 #MINVER#
  freenect_sync_get_depth@Base 1:0.1.1
  freenect_sync_get_tilt_state@Base 1:0.1.1
