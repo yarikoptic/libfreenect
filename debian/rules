@@ -11,6 +11,9 @@ export CFLAGS CPPFLAGS LDFLAGS
 override_dh_auto_configure:
 	dh_auto_configure -- -DBUILD_PYTHON:Bool=True
 
+override_dh_auto_build-indep:
+	doxygen debian/doxygen.conf
+
 override_dh_auto_install:
 	dh_auto_install
 	mv debian/tmp/usr/bin/glview debian/tmp/usr/bin/freenect-glview
@@ -24,3 +27,6 @@ override_dh_auto_install:
 
 override_dh_installdocs:
 	dh_installdocs --all CONTRIB
+
+override_dh_clean-indep:
+	rm -rf debian/html

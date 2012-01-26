@@ -1,0 +1,10 @@
+Document: libfreenect
+Title: libfreenect API Manual
+Author: libfreenect project
+Abstract: This manual describes the API of 
+ of libfreenect, the free drivers of Kinect
+Section: Programming
+
+Format: HTML
+Index: /usr/share/doc/libfreenect-doc/html/index.html
+Files: /usr/share/doc/libfreenect-doc/html/*.html

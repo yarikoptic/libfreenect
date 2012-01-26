@@ -6,6 +6,7 @@ Uploaders: Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@
 Build-Depends: debhelper (>= 7.0.50), dpkg-dev (>= 1.16.1~), python-support,
  cmake,  pkg-config, libusb-1.0-0-dev, freeglut3-dev | libglut3-dev,
  libxmu-dev, libxi-dev, python-dev, cython, python-numpy
+Build-Depends-Indep: doxygen
 Standards-Version: 3.9.2
 Vcs-Git: git://github.com/arnebe/libfreenect.git
 Vcs-Browser: https://github.com/arnebe/libfreenect
@@ -44,6 +45,16 @@ Description: library for accessing Kinect USB camera -- demonstrations
  .
  This package includes some example programs for kinect.
  All programs start with a freenec- prefix.
+
+Package: libfreenect-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Description: library for accessing Kinect USB camera -- documentation
+ libfreenect is the core library for accessing the Microsoft Kinect
+ USB camera.
+ .
+ This package contains the documentation of the API of libfreenect.
 
 Package: python-freenect
 Section: python
