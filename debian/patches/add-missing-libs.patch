@@ -1,0 +1,72 @@
+Description: Add the missing libraries
+ Add missing library to link step of libfreecnect and libfakenect.
+ Centralize also the definition of MATH_LIB
+Origin: vendor
+Forwarded: no
+Author: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
+Last-Update: 2012-01-26
+
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -3,6 +3,7 @@
+ ######################################################################################
+ 
+ include_directories (${CMAKE_CURRENT_SOURCE_DIR})
++find_package(Threads REQUIRED)
+ 
+ set(CMAKE_C_FLAGS "-Wall")
+ 
+@@ -45,8 +46,8 @@
+ install (TARGETS freenectstatic
+   DESTINATION "${PROJECT_LIBRARY_INSTALL_DIR}")
+ 
+-target_link_libraries (freenect ${LIBUSB_1_LIBRARIES})
+-target_link_libraries (freenectstatic ${LIBUSB_1_LIBRARIES})
++target_link_libraries(freenect ${LIBUSB_1_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
++target_link_libraries(freenectstatic ${LIBUSB_1_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+ 
+ # Install the header files
+ install (FILES "../include/libfreenect.h" "../include/libfreenect-registration.h"
+--- a/fakenect/CMakeLists.txt
++++ b/fakenect/CMakeLists.txt
+@@ -11,9 +11,10 @@
+ 
+ install (TARGETS fakenect
+   DESTINATION "${PROJECT_LIBRARY_INSTALL_DIR}/fakenect")
++target_link_libraries(fakenect ${MATH_LIB})
+ 
+ add_executable(record record.c)
+-target_link_libraries(record freenect m)
++target_link_libraries(record freenect)
+ install (TARGETS record
+   DESTINATION bin)
+ 
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -104,6 +104,12 @@
+ 
+ add_definitions(-Wall)
+ 
++if (WIN32)
++  set(MATH_LIB "")
++else(WIN32)
++  set(MATH_LIB "m")
++endif()
++
+ # Pretty much everyone is going to need the main includes
+ include_directories (${CMAKE_CURRENT_SOURCE_DIR}/include)
+ 
+--- a/examples/CMakeLists.txt
++++ b/examples/CMakeLists.txt
+@@ -58,11 +58,6 @@
+ 
+   include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS} ${USB_INCLUDE_DIRS})
+ 
+-  if (WIN32)
+-    set(MATH_LIB "")
+-  else(WIN32)
+-    set(MATH_LIB "m")
+-  endif()
+ 
+   target_link_libraries(glview freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
+   target_link_libraries(regview freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
