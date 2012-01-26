@@ -1,7 +1,0 @@
-Readme file for libfreenect.
-
-This packages installs a udev rules file,
-so no need for "sudo glview" any more ;)
-
-
---arne
