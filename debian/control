@@ -1,8 +1,9 @@
 Source: libfreenect
 Section: libdevel
 Priority: extra
-Maintainer: Arne Bernin <arne@alamut.de>
-Uploaders: Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
+Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
+Uploaders: Arne Bernin <arne@alamut.de>, Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
+DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 7.0.50), dpkg-dev (>= 1.16.1~), python-support,
  cmake,  pkg-config, libusb-1.0-0-dev, freeglut3-dev | libglut3-dev,
  libxmu-dev, libxi-dev, python-dev, cython, python-numpy
