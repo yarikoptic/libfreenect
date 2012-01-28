@@ -1,0 +1,27 @@
+Description: Modify how fakenect is installed
+ Install fakenect/README into share/doc as README.fakenect,
+ Rename record into fakenect-record
+Forwarded: No
+Author: arnebe <arne@alamut.de>, Nicolas Bourdaud <nicolas.bourdaud@gmail.com> 
+Last-Update: 2012-01-128
+
+--- a/fakenect/CMakeLists.txt
++++ b/fakenect/CMakeLists.txt
+@@ -12,9 +12,9 @@
+ install (TARGETS fakenect
+   DESTINATION "${PROJECT_LIBRARY_INSTALL_DIR}/fakenect")
+ 
+-add_executable(record record.c)
+-target_link_libraries(record freenect m)
+-install (TARGETS record
++add_executable(fakenect-record record.c)
++target_link_libraries(fakenect-record freenect m)
++install (TARGETS fakenect-record
+   DESTINATION bin)
+ 
+ CONFIGURE_FILE("fakenect.sh.in"
+@@ -23,3 +23,4 @@
+ install (PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/fakenect.sh
+   DESTINATION bin
+   RENAME fakenect)
++INSTALL(FILES "README" DESTINATION "share/doc/" RENAME "README.fakenect")

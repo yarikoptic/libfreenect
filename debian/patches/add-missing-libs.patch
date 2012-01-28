@@ -35,10 +35,10 @@ Last-Update: 2012-01-26
    DESTINATION "${PROJECT_LIBRARY_INSTALL_DIR}/fakenect")
 +target_link_libraries(fakenect ${MATH_LIB})
  
- add_executable(record record.c)
--target_link_libraries(record freenect m)
-+target_link_libraries(record freenect)
- install (TARGETS record
+ add_executable(fakenect-record record.c)
+-target_link_libraries(fakenect-record freenect m)
++target_link_libraries(fakenect-record freenect)
+ install (TARGETS fakenect-record
    DESTINATION bin)
  
 --- a/CMakeLists.txt

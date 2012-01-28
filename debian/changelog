@@ -8,7 +8,7 @@ libfreenect (1:0.1.2+dfsg-1) UNRELEASED; urgency=low
     modifications have been converted into quilt patches:
       - New patch dont-install-into-include-subfolder.patch
       - New patch dont-postfix-to-install-libdir.patch
-      - New patch rename-readme-fakenect.patch
+      - New patch modify-fakenect-install.patch
   * Add remove-libusb-include-from-exported-header.patch to drop the
     dependency of libfreenect-dev on libusb-1.0-dev.
   * Add correct-libusb-search-and-include.patch to adjust libusb include
@@ -22,7 +22,7 @@ libfreenect (1:0.1.2+dfsg-1) UNRELEASED; urgency=low
   [ Yaroslav Halchenko ]
   * python-freenect: Added module frame_convert.py within examples
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sat, 28 Jan 2012 10:05:58 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sat, 28 Jan 2012 17:27:41 +0100
 
 libfreenect (1:0.0.1+20101211+2-4~pre1) UNRELEASED; urgency=low
 
