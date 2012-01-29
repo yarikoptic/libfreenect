@@ -4,7 +4,7 @@ Upstream-Contact: openkinect@googlegroups.com
 Source: https://github.com/OpenKinect/libfreenect
 
 Files: *
-Copyright: 2009-2010, individual OpenKinect contributors.
+Copyright: 2009-2012, individual OpenKinect contributors.
            See the CONTRIB (debian/CONTRIB in the Debian source package)
            file for details.
 License: Apache-2 or GPL-2
@@ -59,7 +59,8 @@ License: BSD-3
 
 Files: debian/*
 Copyright: 2010, arne <arne@alamut.de>
-           2010-2011, Yaroslav Halchenko <debian@onerussian.com>
+           2010-2012, Yaroslav Halchenko <debian@onerussian.com>
+	   2012, Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 License: GPL-2
 
 License: GPL-2
