@@ -1,3 +1,5 @@
 debian/freenect-cppview.1
 debian/freenect-glpclview.1
 debian/freenect-glview.1
+debian/fakenect-record.1
+debian/fakenect.1
