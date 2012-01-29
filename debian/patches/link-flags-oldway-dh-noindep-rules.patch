@@ -1,9 +1,9 @@
 --- a/debian/control
 +++ b/debian/control
-@@ -3,10 +3,9 @@
- Priority: extra
- Maintainer: Arne Bernin <arne@alamut.de>
- Uploaders: Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
+@@ -4,10 +4,9 @@
+ Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
+ Uploaders: Arne Bernin <arne@alamut.de>, Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
+ DM-Upload-Allowed: yes
 -Build-Depends: debhelper (>= 7.0.50), dpkg-dev (>= 1.16.1~), python-support,
 +Build-Depends: debhelper (>= 7.0.50), python-support,
   cmake,  pkg-config, libusb-1.0-0-dev, freeglut3-dev | libglut3-dev,
@@ -38,7 +38,7 @@
  	doxygen debian/doxygen.conf
  
  override_dh_auto_install:
-@@ -28,5 +29,6 @@
+@@ -23,5 +24,6 @@
  override_dh_installdocs:
  	dh_installdocs --all CONTRIB
  
