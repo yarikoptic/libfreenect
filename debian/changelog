@@ -18,11 +18,12 @@ libfreenect (1:0.1.2+dfsg-1) UNRELEASED; urgency=low
   * New patch: add-missing-libs.patch
   * Add -doc package.
   * Set Nicolas as maintainer and move Arne as uploader.
+  * Rename libfreenect-demos into libfreenect-bin and add utilities to it.
   
   [ Yaroslav Halchenko ]
   * python-freenect: Added module frame_convert.py within examples
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sat, 28 Jan 2012 17:27:41 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sun, 29 Jan 2012 12:00:14 +0100
 
 libfreenect (1:0.0.1+20101211+2-4~pre1) UNRELEASED; urgency=low
 

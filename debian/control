@@ -37,15 +37,26 @@ Description: library for accessing Kinect USB camera -- development files
  This is the development package containing the libraries and header for
  software development with libfreenect.
 
-Package: libfreenect-demos
-Section: libdevel
+Package: libfreenect-bin
+Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: library for accessing Kinect USB camera -- demonstrations
- libfreenect is the core library for accessing the Microsoft Kinect USB camera.
+Description: library for accessing Kinect USB camera -- utilities and samples
+ libfreenect is the core library for accessing the Microsoft Kinect USB
+ camera.
  .
- This package includes some example programs for kinect.
- All programs start with a freenec- prefix.
+ This package includes utilities and sample programs for kinect.
+
+Package: libfreenect-demos
+Section: utils
+Architecture: any
+Depends: libfreenect-bin, ${misc:Depends}
+Description: library for accessing Kinect USB camera -- dummy package
+ libfreenect is the core library for accessing the Microsoft Kinect USB
+ camera.
+ .
+ This package is a metapackage to do the transition from libfreenect-demos
+ to libfreenect-bin. This package can be removed after installation.
 
 Package: libfreenect-doc
 Section: doc
@@ -73,7 +84,7 @@ Description: library for accessing Kinect USB camera -- Python bindings
 Package: freenect
 Section: libs
 Architecture: any
-Depends: ${misc:Depends}, libfreenect-demos, libfreenect-dev, libfreenect0.1
+Depends: ${misc:Depends}, libfreenect-bin, libfreenect-dev, libfreenect0.1
 Description: library for accessing Kinect USB camera -- meta package
  libfreenect is the core library for accessing the Microsoft Kinect
  USB camera.
