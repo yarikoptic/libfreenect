@@ -1,0 +1,2 @@
+examples/*.c
+wrappers/cpp/cppview.cpp
