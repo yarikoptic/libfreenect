@@ -7,7 +7,7 @@ Description: Remove libusb.h include from exported header
 Origin: vendor
 Forwarded: https://github.com/OpenKinect/libfreenect/pull/265
 Author: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
-Last-Update: 2012-01-19
+Last-Update: 2012-01-31
 
 --- a/include/libfreenect.h
 +++ b/include/libfreenect.h
@@ -26,3 +26,14 @@ Last-Update: 2012-01-19
  //
  
  /// If Win32, export all functions for DLL usage
+--- a/src/libfreenect.pc.in
++++ b/src/libfreenect.pc.in
+@@ -5,7 +5,7 @@
+ 	
+ Name: @CMAKE_PROJECT_NAME@
+ Description: Interface to the Microsoft Kinect sensor device.
+-Requires: libusb-1.0
++Requires.private: libusb-1.0
+ Version: @PROJECT_APIVER@
+ Libs: -L${libdir} -lfreenect
+ Cflags: -I${includedir}
