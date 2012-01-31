@@ -1,4 +1,4 @@
-libfreenect (1:0.1.2+dfsg-1) UNRELEASED; urgency=low
+libfreenect (1:0.1.2+dfsg-1) experimental; urgency=low
 
   [ Nicolas Bourdaud ]
   * New upstream release (Closes: #653501)
