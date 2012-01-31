@@ -20,11 +20,12 @@ libfreenect (1:0.1.2+dfsg-1) UNRELEASED; urgency=low
   * Set Nicolas as maintainer and move Arne as uploader.
   * Rename libfreenect-demos into libfreenect-bin and add utilities to it.
   * Stop shipping static libraries
+  * Update Vcs-* fields in debian/control
   
   [ Yaroslav Halchenko ]
   * python-freenect: Added module frame_convert.py within examples
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 31 Jan 2012 17:29:20 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 31 Jan 2012 18:04:09 +0100
 
 libfreenect (1:0.0.1+20101211+2-4~pre1) UNRELEASED; urgency=low
 

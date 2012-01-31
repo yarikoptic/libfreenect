@@ -11,8 +11,8 @@
 -Build-Depends-Indep: doxygen
 + libxmu-dev, libxi-dev, python-dev, cython, python-numpy, doxygen
  Standards-Version: 3.9.2
- Vcs-Git: git://github.com/arnebe/libfreenect.git
- Vcs-Browser: https://github.com/arnebe/libfreenect
+ Homepage: http://openkinect.org/
+ Vcs-Git: git://anonscm.debian.org/pkg-exppsy/libfreenect.git
 --- a/debian/rules
 +++ b/debian/rules
 @@ -1,9 +1,9 @@
