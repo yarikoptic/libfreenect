@@ -46,7 +46,7 @@ Description: library for accessing Kinect USB camera -- utilities and samples
  This package includes utilities and sample programs for kinect.
 
 Package: libfreenect-demos
-Section: utils
+Section: libdevel
 Architecture: any
 Depends: libfreenect-bin, ${misc:Depends}
 Description: library for accessing Kinect USB camera -- dummy package
