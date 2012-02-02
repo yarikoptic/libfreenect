@@ -5,8 +5,7 @@ Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 Uploaders: Arne Bernin <arne@alamut.de>, Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
 Build-Depends: debhelper (>= 7.0.50), dpkg-dev (>= 1.16.1~), python-support,
  cmake,  pkg-config, libusb-1.0-0-dev, freeglut3-dev | libglut3-dev,
- libxmu-dev, libxi-dev, python-dev, cython, python-numpy
-Build-Depends-Indep: doxygen
+ libxmu-dev, libxi-dev, python-dev, cython, python-numpy, doxygen
 Standards-Version: 3.9.2
 Homepage: http://openkinect.org/
 Vcs-Git: git://anonscm.debian.org/pkg-exppsy/libfreenect.git

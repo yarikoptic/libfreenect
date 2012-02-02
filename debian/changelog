@@ -1,3 +1,9 @@
+libfreenect (1:0.1.2+dfsg-2) UNRELEASED; urgency=low
+
+  * Move doxygen from Build-Depends-Indep to Build-Depends.
+
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Thu, 02 Feb 2012 19:07:20 +0100
+
 libfreenect (1:0.1.2+dfsg-1) experimental; urgency=low
 
   [ Nicolas Bourdaud ]
