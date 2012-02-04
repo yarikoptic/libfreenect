@@ -1,9 +1,10 @@
-libfreenect (1:0.1.2+dfsg-2) UNRELEASED; urgency=low
+libfreenect (1:0.1.2+dfsg-2) experimental; urgency=low
 
+  [ Nicolas Bourdaud ]
   * Move doxygen from Build-Depends-Indep to Build-Depends.
   * Revert libfreenect-demos to libdevel section
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Fri, 03 Feb 2012 00:07:02 +0100
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 03 Feb 2012 23:14:33 -0500
 
 libfreenect (1:0.1.2+dfsg-1) experimental; urgency=low
 
