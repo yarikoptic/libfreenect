@@ -1,9 +1,14 @@
 libfreenect (1:0.1.2+dfsg-3) UNRELEASED; urgency=low
 
+  [ Yaroslav Halchenko ]
   * Adding Replaces and Breaks for -bin package (Closes: #658712)
     Thanks to Andreas Beckman for the report
 
- -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 05 Feb 2012 13:56:31 -0500
+  [ Nicolas Bourdaud ]
+  * Fix execution on ARM platforms
+    new patch: cameras-memcpy-structs-into-aligned-buffer.patch
+
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sun, 05 Feb 2012 22:09:19 +0100
 
 libfreenect (1:0.1.2+dfsg-2) experimental; urgency=low
 
