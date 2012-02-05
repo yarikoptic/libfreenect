@@ -7,8 +7,10 @@ libfreenect (1:0.1.2+dfsg-3) UNRELEASED; urgency=low
   [ Nicolas Bourdaud ]
   * Fix execution on ARM platforms
     new patch: cameras-memcpy-structs-into-aligned-buffer.patch
+  * Fix build on big endian platform
+    new patch: build-on-big-endian-systems-again.patch
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sun, 05 Feb 2012 22:09:19 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sun, 05 Feb 2012 22:25:38 +0100
 
 libfreenect (1:0.1.2+dfsg-2) experimental; urgency=low
 

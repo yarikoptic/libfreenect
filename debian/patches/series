@@ -1,4 +1,5 @@
 cameras-memcpy-structs-into-aligned-buffer.patch
+build-on-big-endian-systems-again.patch
 modify-fakenect-install.patch
 dont-postfix-to-install-libdir.patch
 dont-install-into-include-subfolder.patch

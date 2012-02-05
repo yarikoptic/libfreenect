@@ -1,0 +1,65 @@
+From bbc109a589a1dd2c229f8bc98536dbc184dd73f9 Mon Sep 17 00:00:00 2001
+From: Drew Fisher <drew.m.fisher@gmail.com>
+Date: Sun, 29 Jan 2012 16:28:32 -0800
+Subject: [PATCH] Build on big-endian systems again.
+
+On big endian, fn_le32() is actually a function, not an empty preprocessor
+macro, so we can't take the address of its return value when doing the C
+equivalent of reinterpret_cast.
+
+Signed-off-by: Drew Fisher <drew.m.fisher@gmail.com>
+---
+ src/cameras.c           |   13 +++++++++----
+ src/freenect_internal.h |    8 ++++++--
+ 2 files changed, 15 insertions(+), 6 deletions(-)
+
+diff --git a/src/cameras.c b/src/cameras.c
+index d391a7c..a078e1d 100644
+--- a/src/cameras.c
++++ b/src/cameras.c
+@@ -910,10 +910,15 @@ static int freenect_fetch_zero_plane_info(freenect_device *dev)
+ 	}
+ 
+ 	memcpy(&(dev->registration.zero_plane_info), reply + 94, sizeof(dev->registration.zero_plane_info));
+-	dev->registration.zero_plane_info.dcmos_emitter_dist   = *((float*)(&fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.dcmos_emitter_dist)))));
+-	dev->registration.zero_plane_info.dcmos_rcmos_dist     = *((float*)(&fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.dcmos_rcmos_dist)))));
+-	dev->registration.zero_plane_info.reference_distance   = *((float*)(&fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.reference_distance)))));
+-	dev->registration.zero_plane_info.reference_pixel_size = *((float*)(&fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.reference_pixel_size)))));
++	uint32_t temp;
++	temp = fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.dcmos_emitter_dist)));
++	dev->registration.zero_plane_info.dcmos_emitter_dist   = *((float*)(&temp));
++	temp = fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.dcmos_rcmos_dist)));
++	dev->registration.zero_plane_info.dcmos_rcmos_dist     = *((float*)(&temp));
++	temp = fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.reference_distance)));
++	dev->registration.zero_plane_info.reference_distance   = *((float*)(&temp));
++	temp = fn_le32(*((uint32_t*)(&dev->registration.zero_plane_info.reference_pixel_size)));
++	dev->registration.zero_plane_info.reference_pixel_size = *((float*)(&temp));
+ 
+ 	// WTF is all this data?  it's way bigger than sizeof(XnFixedParams)...
+ 	FN_SPEW("dcmos_emitter_distance: %f\n", dev->registration.zero_plane_info.dcmos_emitter_dist);
+diff --git a/src/freenect_internal.h b/src/freenect_internal.h
+index 4e7950e..d23208a 100644
+--- a/src/freenect_internal.h
++++ b/src/freenect_internal.h
+@@ -89,12 +89,16 @@ static inline uint32_t fn_le32(uint32_t d)
+ static inline int16_t fn_le16s(int16_t s)
+ {
+ 	// reinterpret cast to unsigned, use the normal fn_le16, and then reinterpret cast back
+-	return *((int16_t*)(&fn_le16(*((uint16_t*)(&s)))));
++	uint16_t temp = (*(uint16_t*)(&s));
++	temp = fn_le16(temp);
++	return *((int16_t*)(&temp));
+ }
+ static inline int32_t fn_le32s(int32_t s)
+ {
+ 	// reinterpret cast to unsigned, use the normal fn_le32, and then reinterpret cast back
+-	return *((int32_t*)(&fn_le32(*((uint32_t*)(&s)))));
++	uint32_t temp = (*(uint32_t*)(&s));
++	temp = fn_le32(temp);
++	return *((int32_t*)(&temp));
+ }
+ #else
+ #define fn_le16(x) (x)
+-- 
+1.7.8.3
+
