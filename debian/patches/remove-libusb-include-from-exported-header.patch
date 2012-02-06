@@ -5,9 +5,10 @@ Description: Remove libusb.h include from exported header
  problem of discrepancy between the include path of libusb on freebsd and
  the other architectures.
 Origin: vendor
-Forwarded: https://github.com/OpenKinect/libfreenect/pull/265
+Forwarded: yes
+Applied-Upstream: commit:3d735a89dfc380e8ff346a6815be2b54e4fafdfb
 Author: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
-Last-Update: 2012-01-31
+Last-Update: 2012-02-06
 
 --- a/include/libfreenect.h
 +++ b/include/libfreenect.h

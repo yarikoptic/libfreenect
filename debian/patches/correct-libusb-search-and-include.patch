@@ -6,9 +6,10 @@ Description: Fix cmake libusb search and fix libusb include
  libusb-1.0 really expects to be used (see libusb-1.0.pc cflags to verify
  this).
 Origin: vendor
-Forwarded: https://github.com/OpenKinect/libfreenect/pull/265
+Forwarded: yes
+Applied-Upstream: commit:8219750df3a13501626a7f7f54d24afb8e64ec3f
 Author: nicolas bourdaud <nicolas.bourdaud@gmail.com>
-Last-Update: 2012-01-19
+Last-Update: 2012-02-06
 
 --- a/cmake_modules/Findlibusb-1.0.cmake
 +++ b/cmake_modules/Findlibusb-1.0.cmake
