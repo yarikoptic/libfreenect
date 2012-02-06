@@ -1,4 +1,4 @@
-libfreenect (1:0.1.2+dfsg-3) UNRELEASED; urgency=low
+libfreenect (1:0.1.2+dfsg-3) experimental; urgency=low
 
   [ Yaroslav Halchenko ]
   * Adding Replaces and Breaks for -bin package (Closes: #658712)
@@ -11,7 +11,7 @@ libfreenect (1:0.1.2+dfsg-3) UNRELEASED; urgency=low
   * Fix build on big endian platform
     new patch: build-on-big-endian-systems-again.patch
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sun, 05 Feb 2012 22:25:38 +0100
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 06 Feb 2012 09:47:19 -0500
 
 libfreenect (1:0.1.2+dfsg-2) experimental; urgency=low
 
