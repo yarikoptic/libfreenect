@@ -12,7 +12,13 @@ override_dh_auto_configure:
 	dh_auto_configure -- -DBUILD_PYTHON:Bool=True
 
 override_dh_auto_build-indep:
+ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
 	doxygen debian/doxygen.conf
+else
+	: # Documentation was not built due to nodoc flag in DEB_BUILD_OPTIONS
+	: # Creating dummy blank debian/html expected by -doc package
+	mkdir -p debian/html
+endif
 
 override_dh_auto_install:
 	dh_auto_install

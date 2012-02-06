@@ -3,6 +3,7 @@ libfreenect (1:0.1.2+dfsg-3) UNRELEASED; urgency=low
   [ Yaroslav Halchenko ]
   * Adding Replaces and Breaks for -bin package (Closes: #658712)
     Thanks to Andreas Beckman for the report
+  * Respect 'nodoc' flag in DEB_BUILD_OPTIONS
 
   [ Nicolas Bourdaud ]
   * Fix execution on ARM platforms
