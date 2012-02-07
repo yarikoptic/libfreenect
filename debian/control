@@ -124,7 +124,8 @@ Description: library for accessing Kinect device -- Python bindings
 Package: freenect
 Section: libs
 Architecture: any
-Depends: ${misc:Depends}, libfreenect-bin, libfreenect-dev, libfreenect0.1
+Depends: ${misc:Depends}, libfreenect-bin, libfreenect-dev, libfreenect0.1,
+ libfreenect-doc
 Description: library for accessing Kinect device -- metapackage
  libfreenect is a cross-platform library that provides the necessary interfaces
  to activate, initialize, and communicate data with the Kinect hardware.

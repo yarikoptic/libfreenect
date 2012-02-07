@@ -2,8 +2,9 @@ libfreenect (1:0.1.2+dfsg-4) UNRELEASED; urgency=low
 
   * Improved the package description.
   * Drop outdated libglut3-dev from Build-Depends 
+  * Add libfreenect-doc to the dependencies of freenect metapackage 
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 07 Feb 2012 16:55:53 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 07 Feb 2012 17:00:19 +0100
 
 libfreenect (1:0.1.2+dfsg-3) experimental; urgency=low
 
