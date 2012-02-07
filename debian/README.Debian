@@ -6,29 +6,3 @@ The access to the Kinect device is granted to any user belonging to the
 "plugdev" group.
 
 
-
-Conflict with the gspca_kinect kernel module
-============================================
-
-Recent version of the Linux kernel (starting from 3.0) provides a kernel
-module to access the camera of the Kinect through v4l2 called gspca_kinect.
-The problem is that this module claims the camera interface as soon as a
-device is loaded. Whether this behavior is buggy or not still remains to be
-determined (What prevents it from claiming the interface only when the
-device node is opened?).
-
-Thus, in order to use the kinect device through the libfreenect library,
-this module module should be unloaded. To achieve this, one can remove
-gspca_kinect from the kernel if it is already loaded:
-
-	run as root '/sbin/rmmod gspca_kinect'
-
-
-A more permanent solution can be to blacklist the module: create a file in
-/etc/modprobe.d/ (for example blacklist-gspca_kinect.conf) that contain the
-line:
-
-blacklist gspca_kinect
-
-
- 
