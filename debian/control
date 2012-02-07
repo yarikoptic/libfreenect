@@ -16,21 +16,33 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: libfreenect
-Description: library for accessing Kinect USB camera
- libfreenect is the core library for accessing the Microsoft Kinect
- USB camera. Currently, the library supports access to:
-  - RGB and Depth Images
-  - Motors
-  - Accelerometer
-  - LED
+Description: library for accessing Kinect device
+ libfreenect is a cross-platform library that provides the necessary interfaces
+ to activate, initialize, and communicate data with the Kinect hardware.
+ Currently, the library supports access to RGB and depth video streams, motors,
+ accelerometer and LED and provide binding in different languages (C++,
+ Python...)
+ .
+ This library is the low level component of the OpenKinect project which is an
+ open community of people interested in making use of the Xbox Kinect hardware
+ with PCs and other devices.
+ .
+ This package contains the shared library of libfreenect.
 
 Package: libfreenect-dev
 Section: libdevel
 Architecture: any
 Depends: ${misc:Depends}, libfreenect0.1 (= ${binary:Version})
-Description: library for accessing Kinect USB camera -- development files
- libfreenect is the core library for accessing the Microsoft Kinect
- USB camera.
+Description: library for accessing Kinect device -- development files
+ libfreenect is a cross-platform library that provides the necessary interfaces
+ to activate, initialize, and communicate data with the Kinect hardware.
+ Currently, the library supports access to RGB and depth video streams, motors,
+ accelerometer and LED and provide binding in different languages (C++,
+ Python...)
+ .
+ This library is the low level component of the OpenKinect project which is an
+ open community of people interested in making use of the Xbox Kinect hardware
+ with PCs and other devices.
  .
  This is the development package containing the libraries and header for
  software development with libfreenect.
@@ -41,9 +53,16 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: libfreenect-demos (<< 1:0.1.2+dfsg-1)
 Breaks: libfreenect-demos (<< 1:0.1.2+dfsg-1)
-Description: library for accessing Kinect USB camera -- utilities and samples
- libfreenect is the core library for accessing the Microsoft Kinect USB
- camera.
+Description: library for accessing Kinect device -- utilities and samples
+ libfreenect is a cross-platform library that provides the necessary interfaces
+ to activate, initialize, and communicate data with the Kinect hardware.
+ Currently, the library supports access to RGB and depth video streams, motors,
+ accelerometer and LED and provide binding in different languages (C++,
+ Python...)
+ .
+ This library is the low level component of the OpenKinect project which is an
+ open community of people interested in making use of the Xbox Kinect hardware
+ with PCs and other devices.
  .
  This package includes utilities and sample programs for kinect.
 
@@ -51,9 +70,16 @@ Package: libfreenect-demos
 Section: libdevel
 Architecture: any
 Depends: libfreenect-bin, ${misc:Depends}
-Description: library for accessing Kinect USB camera -- dummy package
- libfreenect is the core library for accessing the Microsoft Kinect USB
- camera.
+Description: library for accessing Kinect device -- dummy package
+ libfreenect is a cross-platform library that provides the necessary interfaces
+ to activate, initialize, and communicate data with the Kinect hardware.
+ Currently, the library supports access to RGB and depth video streams, motors,
+ accelerometer and LED and provide binding in different languages (C++,
+ Python...)
+ .
+ This library is the low level component of the OpenKinect project which is an
+ open community of people interested in making use of the Xbox Kinect hardware
+ with PCs and other devices.
  .
  This package is a metapackage to do the transition from libfreenect-demos
  to libfreenect-bin. This package can be removed after installation.
@@ -62,9 +88,16 @@ Package: libfreenect-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Description: library for accessing Kinect USB camera -- documentation
- libfreenect is the core library for accessing the Microsoft Kinect
- USB camera.
+Description: library for accessing Kinect device -- documentation
+ libfreenect is a cross-platform library that provides the necessary interfaces
+ to activate, initialize, and communicate data with the Kinect hardware.
+ Currently, the library supports access to RGB and depth video streams, motors,
+ accelerometer and LED and provide binding in different languages (C++,
+ Python...)
+ .
+ This library is the low level component of the OpenKinect project which is an
+ open community of people interested in making use of the Xbox Kinect hardware
+ with PCs and other devices.
  .
  This package contains the documentation of the API of libfreenect.
 
@@ -74,9 +107,16 @@ Architecture: any
 Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends},
          libfreenect0.1 (= ${binary:Version}), python-numpy
 Suggests: python-matplotlib, python-opencv
-Description: library for accessing Kinect USB camera -- Python bindings
- libfreenect is the core library for accessing the Microsoft Kinect
- USB camera.
+Description: library for accessing Kinect device -- Python bindings
+ libfreenect is a cross-platform library that provides the necessary interfaces
+ to activate, initialize, and communicate data with the Kinect hardware.
+ Currently, the library supports access to RGB and depth video streams, motors,
+ accelerometer and LED and provide binding in different languages (C++,
+ Python...)
+ .
+ This library is the low level component of the OpenKinect project which is an
+ open community of people interested in making use of the Xbox Kinect hardware
+ with PCs and other devices.
  .
  This package provides freenect extension to use libfreenect functionality
  from Python and includes some demo scripts.
@@ -85,8 +125,15 @@ Package: freenect
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}, libfreenect-bin, libfreenect-dev, libfreenect0.1
-Description: library for accessing Kinect USB camera -- meta package
- libfreenect is the core library for accessing the Microsoft Kinect
- USB camera.
+Description: library for accessing Kinect device -- metapackage
+ libfreenect is a cross-platform library that provides the necessary interfaces
+ to activate, initialize, and communicate data with the Kinect hardware.
+ Currently, the library supports access to RGB and depth video streams, motors,
+ accelerometer and LED and provide binding in different languages (C++,
+ Python...)
  .
- This is the meta package to install all components of the project.
+ This library is the low level component of the OpenKinect project which is an
+ open community of people interested in making use of the Xbox Kinect hardware
+ with PCs and other devices.
+ .
+ This is the metapackage to install all components of the project.
