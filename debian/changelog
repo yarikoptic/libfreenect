@@ -1,11 +1,12 @@
-libfreenect (1:0.1.2+dfsg-4) UNRELEASED; urgency=low
+libfreenect (1:0.1.2+dfsg-4) unstable; urgency=low
 
+  [ Nicolas Bourdaud ]
   * Improved the package description.
   * Drop outdated libglut3-dev from Build-Depends 
   * Add libfreenect-doc to the dependencies of freenect metapackage 
   * Remove the paragraph about conflict with kernel module in README.Debian 
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 07 Feb 2012 21:41:16 +0100
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 12 Feb 2012 19:00:15 -0500
 
 libfreenect (1:0.1.2+dfsg-3) experimental; urgency=low
 
