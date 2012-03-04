@@ -28,7 +28,7 @@ override_dh_auto_install:
 
 override_dh_pysupport:
 	dh_pysupport -ppython-freenect
-	dh_numpy -ppython-freenect
+	if [ -x /usr/bin/dh_numpy ]; then dh_numpy -ppython-freenect; fi
 
 override_dh_installdocs:
 	dh_installdocs --all CONTRIB
