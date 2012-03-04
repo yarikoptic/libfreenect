@@ -1,0 +1,13 @@
+--- a/debian/rules
++++ b/debian/rules
+@@ -27,10 +27,6 @@
+ 	mv debian/tmp/usr/bin/glpclview debian/tmp/usr/bin/freenect-glpclview
+ 	mv debian/tmp/usr/bin/cppview debian/tmp/usr/bin/freenect-cppview
+ 
+-override_dh_pysupport:
+-	dh_pysupport -ppython-freenect
+-	dh_numpy -ppython-freenect
+-
+ override_dh_installdocs:
+ 	dh_installdocs --all CONTRIB
+ 

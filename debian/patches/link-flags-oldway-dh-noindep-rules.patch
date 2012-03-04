@@ -8,7 +8,7 @@
 +Build-Depends: debhelper (>= 7.0.50), python-support,
   cmake,  pkg-config, libusb-1.0-0-dev, freeglut3-dev,
   libxmu-dev, libxi-dev, python-dev, cython, python-numpy, doxygen
- Standards-Version: 3.9.2
+ Standards-Version: 3.9.3
 --- a/debian/rules
 +++ b/debian/rules
 @@ -1,9 +1,9 @@
@@ -34,7 +34,7 @@
  ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
  	doxygen debian/doxygen.conf
  else
-@@ -29,5 +30,6 @@
+@@ -33,5 +34,6 @@
  override_dh_installdocs:
  	dh_installdocs --all CONTRIB
  
