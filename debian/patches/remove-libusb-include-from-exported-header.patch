@@ -8,11 +8,25 @@ Origin: vendor
 Forwarded: yes
 Applied-Upstream: commit:3d735a89dfc380e8ff346a6815be2b54e4fafdfb
 Author: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
-Last-Update: 2012-02-06
+Last-Update: 2012-03-04
 
 --- a/include/libfreenect.h
 +++ b/include/libfreenect.h
-@@ -156,13 +156,7 @@
+@@ -29,6 +29,13 @@
+ 
+ #include <stdint.h>
+ 
++/* We need struct timeval */
++#ifdef _WIN32
++#include <winsock.h>
++#else
++#include <sys/time.h>
++#endif
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -156,13 +163,7 @@
  typedef struct _freenect_device freenect_device; /**< Holds device information. */
  
  // usb backend specific section

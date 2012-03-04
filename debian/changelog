@@ -2,8 +2,10 @@ libfreenect (1:0.1.2+dfsg-5) UNRELEASED; urgency=low
 
   * Execute dh_numpy for python-freenect to fix lintian error
   * Bump policy version to 3.9.3 
+  * Update remove-libusb-include-from-exported-header.patch to fix warnings
+    about undeclared struct timeval when using libfreenect.h
 
- -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sat, 03 Mar 2012 18:45:37 +0100
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Sun, 04 Mar 2012 09:35:53 +0100
 
 libfreenect (1:0.1.2+dfsg-4) unstable; urgency=low
 
