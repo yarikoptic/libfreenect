@@ -1,15 +1,14 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
-DEB_LDFLAGS_MAINT_APPEND=-Wl,-Bsymbolic-functions -Wl,--as-needed
-include /usr/share/dpkg/buildflags.mk
-export CFLAGS CPPFLAGS LDFLAGS
+export DEB_LDFLAGS_MAINT_APPEND=-Wl,-Bsymbolic-functions -Wl,--as-needed
+export MA_TRIPLET=`dpkg-architecture -qDEB_HOST_MULTIARCH`
 
 %:
 	dh $@
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DBUILD_PYTHON:Bool=True
+	dh_auto_configure -- -DBUILD_PYTHON:Bool=True -DPROJECT_LIBRARY_INSTALL_DIR="lib/$(MA_TRIPLET)"
 
 override_dh_auto_build-indep:
 ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
@@ -32,6 +31,9 @@ override_dh_pysupport:
 
 override_dh_installdocs:
 	dh_installdocs --all CONTRIB
+
+override_dh_makeshlibs:
+	dh_makeshlibs -Xfakenect
 
 override_dh_clean-indep:
 	rm -rf debian/html
