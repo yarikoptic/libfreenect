@@ -1,7 +1,7 @@
 cameras-memcpy-structs-into-aligned-buffer.patch
 build-on-big-endian-systems-again.patch
 modify-fakenect-install.patch
-dont-postfix-to-install-libdir.patch
+use-standard-libdir.patch
 dont-install-into-include-subfolder.patch
 remove-libusb-include-from-exported-header.patch
 correct-libusb-search-and-include.patch
