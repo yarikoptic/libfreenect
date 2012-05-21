@@ -32,7 +32,6 @@ Description: library for accessing Kinect device
  This package contains the shared library of libfreenect.
 
 Package: libfreenect-dev
-Section: libdevel
 Architecture: any
 Multi-Arch: same
 Depends: ${misc:Depends}, libfreenect0.1 (= ${binary:Version})
@@ -70,7 +69,6 @@ Description: library for accessing Kinect device -- utilities and samples
  This package includes utilities and sample programs for kinect.
 
 Package: libfreenect-demos
-Section: libdevel
 Architecture: any
 Depends: libfreenect-bin, ${misc:Depends}
 Description: library for accessing Kinect device -- dummy package
