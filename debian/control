@@ -14,6 +14,8 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-exppsy/libfreenect.git
 Package: libfreenect0.1
 Section: libs
 Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: libfreenect
 Description: library for accessing Kinect device
@@ -32,6 +34,7 @@ Description: library for accessing Kinect device
 Package: libfreenect-dev
 Section: libdevel
 Architecture: any
+Multi-Arch: same
 Depends: ${misc:Depends}, libfreenect0.1 (= ${binary:Version})
 Description: library for accessing Kinect device -- development files
  libfreenect is a cross-platform library that provides the necessary interfaces
@@ -87,6 +90,7 @@ Description: library for accessing Kinect device -- dummy package
 Package: libfreenect-doc
 Section: doc
 Architecture: all
+Multi-Arch: foreign
 Depends: ${misc:Depends}
 Description: library for accessing Kinect device -- documentation
  libfreenect is a cross-platform library that provides the necessary interfaces
