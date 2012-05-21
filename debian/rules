@@ -5,7 +5,7 @@ export DEB_LDFLAGS_MAINT_APPEND=-Wl,-Bsymbolic-functions -Wl,--as-needed
 export MA_TRIPLET=`dpkg-architecture -qDEB_HOST_MULTIARCH`
 
 %:
-	dh $@
+	dh $@ --with python2
 
 override_dh_auto_configure:
 	dh_auto_configure -- -DBUILD_PYTHON:Bool=True -DPROJECT_LIBRARY_INSTALL_DIR="lib/$(MA_TRIPLET)"
@@ -25,8 +25,8 @@ override_dh_auto_install:
 	mv debian/tmp/usr/bin/glpclview debian/tmp/usr/bin/freenect-glpclview
 	mv debian/tmp/usr/bin/cppview debian/tmp/usr/bin/freenect-cppview
 
-override_dh_pysupport:
-	dh_pysupport -ppython-freenect
+override_dh_python2:
+	dh_python2 -p python-freenect
 	if [ -x /usr/bin/dh_numpy ]; then dh_numpy -ppython-freenect; fi
 
 override_dh_installdocs:

@@ -3,9 +3,10 @@ Section: libdevel
 Priority: extra
 Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 Uploaders: Arne Bernin <arne@alamut.de>, Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
-Build-Depends: debhelper (>= 9), python-support,
- cmake,  pkg-config, libusb-1.0-0-dev, freeglut3-dev,
- libxmu-dev, libxi-dev, python-dev, cython, python-numpy, doxygen
+Build-Depends: debhelper (>= 9), cmake,  pkg-config,
+ libusb-1.0-0-dev, freeglut3-dev, libxmu-dev, libxi-dev,
+ python-all-dev (>= 2.6.6-3~), cython, python-numpy, doxygen
+X-Python-Version: 2.7
 Standards-Version: 3.9.3
 Homepage: http://openkinect.org/
 Vcs-Git: git://anonscm.debian.org/pkg-exppsy/libfreenect.git
@@ -106,6 +107,7 @@ Description: library for accessing Kinect device -- documentation
 Package: python-freenect
 Section: python
 Architecture: any
+Provides: ${python:Provides}
 Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends},
          libfreenect0.1 (= ${binary:Version}), python-numpy
 Suggests: python-matplotlib, python-opencv
