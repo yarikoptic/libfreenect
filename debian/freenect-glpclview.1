@@ -1,19 +1,25 @@
-.TH FREENECT-GLVIEW "1" "11 December 2010" "Freenect camera test" "User Commands"
+.TH FREENECT-GLPCVIEW 1 2012-05-21 OpenKinect "libfreenect manual"
 .SH NAME
-freenect-glpclview \- manual page for freenect camera test
-.SH SYNOPSYS
-.B freenect-glview
+freenect-glpcview \- manual page for freenect camera test
 .SH DESCRIPTION
-This is a simple demo program from the OpenKinect project. To be able to use it, you need to connect a kinect camera device to the USB port of your system. 
-.PP
-This program requires OpenGL (Glut) to be installed.
-.PP
+.LP
+This is a simple demo program that illustrates the use of the C synchronous
+libfreenect library. It also provides a simple way to test the communication
+with the freenect device.
+.SS Shortcuts
+.TP
+.B ESC
+Exit the program
+.TP
+.B Key W
+Increase zoom
+.TP
+.B Key S
+Decrease zoom
+.TP
+.B Key C
+Switch on/off the texture image
 .SH "SEE ALSO"
-The full documentation for
-.B Freenect
-is available in the libfreenect doc directory, 
-see 
-.B /usr/share/doc/libfreenect.
-.SH AUTHORS
-Arne Bernin (arne@alamut.de)
-
+.BR fakenect (1),
+.BR freenect-glview (1),
+.BR freenect-cppview (1)

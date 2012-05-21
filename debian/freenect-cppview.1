@@ -1,20 +1,57 @@
-.TH FREENECT-GLVIEW "1" "11 December 2010" "Freenect camera test" "User Commands"
+.TH FREENECT-CPPVIEW 1 2012-05-21 OpenKinect "libfreenect manual"
 .SH NAME
 freenect-cppview \- manual page for freenect camera test
-.SH SYNOPSYS
-.B freenect-glview
+.SH SYNOPSIS
+.SY freenect-cppview 
 .SH DESCRIPTION
-This is a simple demo program from the OpenKinect project. To be able to use it, you need to connect a
-kinect camera device to the USB port of your system. 
-.PP
-This program requires OpenGL (Glut) to be installed.
-.PP
+.LP
+This is a simple demo program that illustrates the use of the C++
+libfreenect library. It also provide a simple way to test the communication
+with the freenect device.
+.SS Shortcuts
+.TP
+.B ESC
+Exit the program
+.TP
+.B Key W
+Increase tilt
+.TP
+.B Key S
+Reset tilt to 0
+.TP
+.B Key X
+Decrease tilt
+.TP
+.B Key E
+Set tilt to 10
+.TP
+.B Key C
+Set tilt to \-10
+.TP
+.B Key F
+Change video format
+.TP
+.B Key 1
+Change LED color to still green
+.TP
+.B Key 2
+Change LED color to still red
+.TP
+.B Key 3
+Change LED color to still yellow
+.TP
+.B Key 4
+Change LED color to blinking green
+.TP
+.B Key 5
+Change LED color to blinking green
+.TP
+.B Key 6
+Change LED color to blinking red and yellow
+.TP
+.B Key 0
+Switch off the LED
 .SH "SEE ALSO"
-The full documentation for
-.B Freenect
-is available in the libfreenect doc directory, 
-see 
-.B /usr/share/doc/libfreenect.
-.SH AUTHORS
-Arne Bernin (arne@alamut.de)
-
+.BR fakenect (1),
+.BR freenect-glview (1),
+.BR freenect-glpcview (1)
