@@ -1,15 +1,15 @@
-From 1e5e3641644b2c5321274f2e455033f227f5e079 Mon Sep 17 00:00:00 2001
+From 01a09e2538ee70a2d66c432df0a9d80d424c42d6 Mon Sep 17 00:00:00 2001
 From: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 Date: Tue, 22 May 2012 14:46:08 +0200
 Subject: [PATCH] NeuroDebian backport patch
 
 ---
  debian/compat                  |    2 +-
- debian/control                 |    6 +-----
+ debian/control                 |    9 ++-------
  debian/libfreenect-dev.install |    6 +++---
  debian/libfreenect0.1.install  |    4 ++--
  debian/rules                   |   17 +++++++++--------
- 5 files changed, 16 insertions(+), 19 deletions(-)
+ 5 files changed, 17 insertions(+), 21 deletions(-)
 
 diff --git a/debian/compat b/debian/compat
 index ec63514..7f8f011 100644
@@ -19,19 +19,23 @@ index ec63514..7f8f011 100644
 -9
 +7
 diff --git a/debian/control b/debian/control
-index eb5882a..7bafd2e 100644
+index eb5882a..eaf72c8 100644
 --- a/debian/control
 +++ b/debian/control
-@@ -3,7 +3,7 @@ Section: libdevel
+@@ -3,10 +3,9 @@ Section: libdevel
  Priority: extra
  Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
  Uploaders: Arne Bernin <arne@alamut.de>, Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
 -Build-Depends: debhelper (>= 9), cmake,  pkg-config,
 +Build-Depends: debhelper (>= 7.0.50~), cmake,  pkg-config, python-support,
   libusb-1.0-0-dev, freeglut3-dev, libxmu-dev, libxi-dev,
-  python-all-dev (>= 2.6.6-3~), cython, python-numpy, doxygen
- X-Python-Version: 2.7
-@@ -15,8 +15,6 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-exppsy/libfreenect.git
+- python-all-dev (>= 2.6.6-3~), cython, python-numpy, doxygen
+-X-Python-Version: 2.7
++ python-dev, cython, python-numpy, doxygen
+ Standards-Version: 3.9.3
+ Homepage: http://openkinect.org/
+ Vcs-Git: git://anonscm.debian.org/pkg-exppsy/libfreenect.git
+@@ -15,8 +14,6 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-exppsy/libfreenect.git
  Package: libfreenect0.1
  Section: libs
  Architecture: any
@@ -40,7 +44,7 @@ index eb5882a..7bafd2e 100644
  Depends: ${shlibs:Depends}, ${misc:Depends}
  Conflicts: libfreenect
  Description: library for accessing Kinect device
-@@ -34,7 +32,6 @@ Description: library for accessing Kinect device
+@@ -34,7 +31,6 @@ Description: library for accessing Kinect device
  
  Package: libfreenect-dev
  Architecture: any
@@ -48,7 +52,7 @@ index eb5882a..7bafd2e 100644
  Depends: ${misc:Depends}, libfreenect0.1 (= ${binary:Version})
  Description: library for accessing Kinect device -- development files
   libfreenect is a cross-platform library that provides the necessary interfaces
-@@ -89,7 +86,6 @@ Description: library for accessing Kinect device -- dummy package
+@@ -89,7 +85,6 @@ Description: library for accessing Kinect device -- dummy package
  Package: libfreenect-doc
  Section: doc
  Architecture: all
