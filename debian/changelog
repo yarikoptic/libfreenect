@@ -1,3 +1,15 @@
+libfreenect (1:0.1.2+dfsg-6) UNRELEASED; urgency=low
+
+  * Make build system compatible with multiarch:
+    - dont-postfix-to-install-libdir.patch becomes use-standard-libdir.patch
+  * Bump debhelper compatibility level to 9.
+  * Add multiarch support.
+  * Remove useless section fields from debian/control.
+  * Use dh_python2 instead of dh_pysupport.
+  * Update manpages with keyboard shortcuts. (Closes: #663869)
+
+ -- Nicolas Bourdaud <nicolas.bourdaud@gmail.com>  Tue, 22 May 2012 15:01:08 +0200
+
 libfreenect (1:0.1.2+dfsg-5) unstable; urgency=low
 
   [ Nicolas Bourdaud ]
