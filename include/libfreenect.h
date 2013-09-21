@@ -24,10 +24,16 @@
  * either License.
  */
 
-#ifndef LIBFREENECT_H
-#define LIBFREENECT_H
+#pragma once
 
 #include <stdint.h>
+
+/* We need struct timeval */
+#ifdef _WIN32
+#include <winsock.h>
+#else
+#include <sys/time.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -100,6 +106,23 @@ typedef enum {
 	FREENECT_DEPTH_DUMMY        = 2147483647, /**< Dummy value to force enum to be 32 bits wide */
 } freenect_depth_format;
 
+/// Enumeration of flags to toggle features with freenect_set_flag()
+typedef enum {
+	// values written to the CMOS register
+	FREENECT_AUTO_EXPOSURE      = 1 << 14,
+	FREENECT_AUTO_WHITE_BALANCE = 1 << 1,
+	FREENECT_RAW_COLOR          = 1 << 4,
+	// registers to be written with 0 or 1
+	FREENECT_MIRROR_DEPTH       = 0x0017,
+	FREENECT_MIRROR_VIDEO       = 0x0047,
+} freenect_flag;
+
+/// Possible values for setting each `freenect_flag`
+typedef enum {
+	FREENECT_OFF = 0,
+	FREENECT_ON  = 1,
+} freenect_flag_value;
+
 /// Structure to give information about the width, height, bitrate,
 /// framerate, and buffer size of a frame in a particular mode, as
 /// well as the total number of bytes needed to hold a single frame.
@@ -156,13 +179,7 @@ struct _freenect_device;
 typedef struct _freenect_device freenect_device; /**< Holds device information. */
 
 // usb backend specific section
-#ifdef _WIN32
-  /* frees Windows users of the burden of specifying the path to <libusb-1.0/libusb.h> */
-  typedef void freenect_usb_context;
-#else
-  #include <libusb-1.0/libusb.h>
-  typedef libusb_context freenect_usb_context; /**< Holds libusb-1.0 specific information */
-#endif
+typedef void freenect_usb_context; /**< Holds libusb-1.0 context */
 //
 
 /// If Win32, export all functions for DLL usage
@@ -301,6 +318,15 @@ FREENECTAPI int freenect_supported_subdevices(void);
  * @param subdevs Flags representing the subdevices to select
  */
 FREENECTAPI void freenect_select_subdevices(freenect_context *ctx, freenect_device_flags subdevs);
+
+/**
+ * Returns the devices that are enabled after calls to freenect_open_device()
+ * On newer kinects the motor and audio are automatically disabled for now
+ *
+ * @param ctx Context to set future subdevice selection for
+ * @return Flags representing the subdevices that were actually opened (see freenect_device_flags)
+ */
+FREENECTAPI freenect_device_flags freenect_enabled_subdevices(freenect_context *ctx);
 
 /**
  * Opens a kinect device via a context. Index specifies the index of
@@ -614,9 +640,16 @@ FREENECTAPI freenect_frame_mode freenect_find_depth_mode(freenect_resolution res
  */
 FREENECTAPI int freenect_set_depth_mode(freenect_device* dev, const freenect_frame_mode mode);
 
+/**
+ * Enables or disables the specified flag.
+ * 
+ * @param flag Feature to set
+ * @param value `FREENECT_OFF` or `FREENECT_ON`
+ * 
+ * @return 0 on success, < 0 if error
+ */
+FREENECTAPI int freenect_set_flag(freenect_device *dev, freenect_flag flag, freenect_flag_value value);
+
 #ifdef __cplusplus
 }
 #endif
-
-#endif //
-

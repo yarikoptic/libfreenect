@@ -40,6 +40,8 @@
 
 FREENECTAPI int freenect_init(freenect_context **ctx, freenect_usb_context *usb_ctx)
 {
+	int res;
+
 	*ctx = (freenect_context*)malloc(sizeof(freenect_context));
 	if (!ctx)
 		return -1;
@@ -52,7 +54,12 @@ FREENECTAPI int freenect_init(freenect_context **ctx, freenect_usb_context *usb_
 			| FREENECT_DEVICE_AUDIO
 #endif
 			);
-	return fnusb_init(&(*ctx)->usb, usb_ctx);
+	res = fnusb_init(&(*ctx)->usb, usb_ctx);
+	if (res < 0) {
+		free(*ctx);
+		*ctx = NULL;
+	}
+	return res;
 }
 
 FREENECTAPI int freenect_shutdown(freenect_context *ctx)
@@ -139,6 +146,10 @@ FREENECTAPI void freenect_select_subdevices(freenect_context *ctx, freenect_devi
 			| FREENECT_DEVICE_AUDIO
 #endif
 			));
+}
+
+FREENECTAPI freenect_device_flags freenect_enabled_subdevices(freenect_context *ctx) {
+	return ctx->enabled_subdevices;
 }
 
 FREENECTAPI int freenect_open_device(freenect_context *ctx, freenect_device **dev, int index)
@@ -260,7 +271,7 @@ FREENECTAPI void freenect_set_log_callback(freenect_context *ctx, freenect_log_c
 	ctx->log_cb = cb;
 }
 
-void fn_log(freenect_context *ctx, freenect_loglevel level, const char *fmt, ...)
+FN_INTERNAL void fn_log(freenect_context *ctx, freenect_loglevel level, const char *fmt, ...)
 {
 	va_list ap;
 
