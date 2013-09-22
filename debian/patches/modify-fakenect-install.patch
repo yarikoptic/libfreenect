@@ -7,20 +7,20 @@ Last-Update: 2012-01-128
 
 --- a/fakenect/CMakeLists.txt
 +++ b/fakenect/CMakeLists.txt
-@@ -12,9 +12,9 @@
+@@ -13,9 +13,9 @@ target_link_libraries(fakenect ${MATH_LI
  install (TARGETS fakenect
    DESTINATION "${PROJECT_LIBRARY_INSTALL_DIR}/fakenect")
  
 -add_executable(record record.c)
--target_link_libraries(record freenect m)
+-target_link_libraries(record freenect)
 -install (TARGETS record
 +add_executable(fakenect-record record.c)
-+target_link_libraries(fakenect-record freenect m)
++target_link_libraries(fakenect-record freenect)
 +install (TARGETS fakenect-record
    DESTINATION bin)
  
  CONFIGURE_FILE("fakenect.sh.in"
-@@ -23,3 +23,4 @@
+@@ -24,3 +24,4 @@ CONFIGURE_FILE("fakenect.sh.in"
  install (PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/fakenect.sh
    DESTINATION bin
    RENAME fakenect)

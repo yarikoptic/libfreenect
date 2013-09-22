@@ -1,3 +1,20 @@
+libfreenect (1:0.2.0+dfsg-1) unstable; urgency=low
+
+  * Fresh upstream release
+    - support of newer Kinect models (Closes: #723939). Thanks Andrew Harvey
+      for the report
+    - packaged is actually v0.2.0-1-g5eed1f0 (i.e. 1 commit after release tag)
+      to have correct version specified to cmake
+  * debian/patches
+    - add-missing-libs.patch and modify-fakenect-install.patch -- updated
+    - removed (absorbed upstream):
+      build-on-big-endian-systems-again.patch
+      cameras-memcpy-structs-into-aligned-buffer.patch
+      correct-libusb-search-and-include.patch
+      remove-libusb-include-from-exported-header.patch
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sat, 21 Sep 2013 20:07:09 -0400
+
 libfreenect (1:0.1.2+dfsg-6) unstable; urgency=low
 
   [ Nicolas Bourdaud ]
