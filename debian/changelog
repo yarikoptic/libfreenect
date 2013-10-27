@@ -14,8 +14,11 @@ libfreenect (1:0.2.0+dfsg-1) unstable; urgency=low
       cameras-memcpy-structs-into-aligned-buffer.patch
       correct-libusb-search-and-include.patch
       remove-libusb-include-from-exported-header.patch
+  * debian/copyright
+    - updated to include wrappers/ruby/ffi-libfreenect copyright/license
+      (Thanks Paul Tagliamonte for the review/report)
 
- -- Yaroslav Halchenko <debian@onerussian.com>  Sat, 21 Sep 2013 20:19:06 -0400
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 27 Oct 2013 09:42:41 -0400
 
 libfreenect (1:0.1.2+dfsg-6) unstable; urgency=low
 
