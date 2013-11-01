@@ -1,3 +1,12 @@
+libfreenect (1:0.2.0+dfsg-2) unstable; urgency=low
+
+  * debian/patches
+    - correct-libusb-path.patch - "reintroduced" to fix a single left-out
+      versioned include of libusb.h . Should resolve FTBFS on kfreeebsd
+      (Closes: #728483)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 01 Nov 2013 14:44:18 -0400
+
 libfreenect (1:0.2.0+dfsg-1) unstable; urgency=low
 
   * Fresh upstream release
