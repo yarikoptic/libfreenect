@@ -2,35 +2,33 @@
 # Packages needed for examples
 ######################################################################################
 
-set(CMAKE_C_FLAGS "-Wall")
+# todo: use these throughout
+file(GLOB SRC_STANDARD chunkview.c glview.c hiview.c regview.c)
+file(GLOB SRC_AUDIO    micview.c wavrecord.c)
+file(GLOB SRC_SYNC     glpclview.c regtest.c tiltdemo.c)
+set (SRC_ALL ${SRC_STANDARD} ${SRC_AUDIO} ${SRC_SYNC})
 
 if (WIN32)
-  set_source_files_properties(glview.c PROPERTIES LANGUAGE CXX)
-  set_source_files_properties(regview.c PROPERTIES LANGUAGE CXX)
-  set_source_files_properties(glpclview.c PROPERTIES LANGUAGE CXX)
-  set_source_files_properties(hiview.c PROPERTIES LANGUAGE CXX)
-  set_source_files_properties(tiltdemo.c PROPERTIES LANGUAGE CXX)
-  set_source_files_properties(chunkview.c PROPERTIES LANGUAGE CXX)
-
   set(THREADS_USE_PTHREADS_WIN32 true)
   find_package(Threads REQUIRED)
-
   include_directories(${THREADS_PTHREADS_INCLUDE_DIR})
+  set_source_files_properties(${SRC_ALL} PROPERTIES LANGUAGE CXX)
 endif()
 
 add_executable(freenect-glview glview.c)
 add_executable(freenect-regview regview.c)
 add_executable(freenect-hiview hiview.c)
 add_executable(freenect-chunkview chunkview.c)
-if(BUILD_AUDIO)
-  add_executable(freenect-wavrecord wavrecord.c)
-  add_executable(freenect-micview micview.c)
-endif()
+add_executable(freenect-wavrecord wavrecord.c)
+add_executable(freenect-micview micview.c)
 
 if (BUILD_C_SYNC)
   add_executable(freenect-glpclview glpclview.c)
   add_executable(freenect-tiltdemo tiltdemo.c)
   add_executable(freenect-regtest regtest.c)
+
+  add_dependencies(freenect-glpclview freenect-tiltdemo freenect-regtest
+    freenect_sync)
 endif()
 
 # We need to include libfreenect_sync.h for glpclview
@@ -43,10 +41,8 @@ if(APPLE)
   target_link_libraries(freenect-regview freenect)
   target_link_libraries(freenect-hiview freenect)
   target_link_libraries(freenect-chunkview freenect)
-  if (BUILD_AUDIO)
-    target_link_libraries(freenect-wavrecord freenect)
-    target_link_libraries(freenect-micview freenect)
-  endif()
+  target_link_libraries(freenect-wavrecord freenect)
+  target_link_libraries(freenect-micview freenect)
   if (BUILD_C_SYNC)
     target_link_libraries(freenect-glpclview freenect_sync)
     target_link_libraries(freenect-tiltdemo freenect_sync)
@@ -65,10 +61,8 @@ else()
   target_link_libraries(freenect-regview freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
   target_link_libraries(freenect-hiview freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
   target_link_libraries(freenect-chunkview freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
-  if (BUILD_AUDIO)
-    target_link_libraries(freenect-wavrecord freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
-    target_link_libraries(freenect-micview freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
-  endif()
+  target_link_libraries(freenect-wavrecord freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
+  target_link_libraries(freenect-micview freenect ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
   if (BUILD_C_SYNC)
     target_link_libraries(freenect-glpclview freenect_sync ${OPENGL_LIBRARIES} ${GLUT_LIBRARY}
  ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIB})
@@ -77,15 +71,10 @@ else()
   endif()
 endif()
 
-install (TARGETS freenect-glview freenect-regview freenect-hiview freenect-chunkview
+install (TARGETS freenect-glview freenect-regview freenect-hiview freenect-chunkview freenect-wavrecord freenect-micview
   DESTINATION bin)
 
 if (BUILD_C_SYNC)
   install (TARGETS freenect-glpclview freenect-tiltdemo
     DESTINATION bin)
-endif()
-
-if (BUILD_AUDIO)
-  install (TARGETS freenect-wavrecord DESTINATION bin)
-  install (TARGETS freenect-micview DESTINATION bin)
 endif()
