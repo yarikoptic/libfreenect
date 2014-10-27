@@ -4,13 +4,12 @@ Author: arnebe <arne@alamut.de>
 
 --- a/cmake_modules/SetupDirectories.cmake
 +++ b/cmake_modules/SetupDirectories.cmake
-@@ -9,7 +9,8 @@
+@@ -6,7 +6,7 @@ ELSE (PROJECT_OS_WIN)
+ ENDIF (PROJECT_OS_WIN)
  
- # Installation prefix for include files
  STRING (TOLOWER ${PROJECT_NAME} projectNameLower)
 -SET (PROJECT_INCLUDE_INSTALL_DIR "include/${projectNameLower}")
-+#SET (PROJECT_INCLUDE_INSTALL_DIR "include/${projectNameLower}")
 +SET (PROJECT_INCLUDE_INSTALL_DIR "include")
+ SET (PROJECT_MANPAGE_INSTALL_DIR "share/man")
+ SET (PROJECT_LIBRARY_INSTALL_DIR "lib")
  
- IF (NOT DEFINED PROJECT_LIBRARY_INSTALL_DIR)
- 	SET (PROJECT_LIBRARY_INSTALL_DIR "lib" CACHE PATH "object code libraries")

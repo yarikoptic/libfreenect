@@ -1,5 +1,3 @@
-correct-libusb-path.patch
 modify-fakenect-install.patch
-use-standard-libdir.patch
 dont-install-into-include-subfolder.patch
 add-missing-libs.patch
