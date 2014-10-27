@@ -23,7 +23,7 @@
  * either License.
  */
 
-#include <libfreenect.h>
+#include "libfreenect.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -96,12 +96,11 @@ static double get_time()
 
 static char *one_line(FILE *fp)
 {
+	int c;
 	int pos = 0;
 	char *out = NULL;
-	char c;
-	while ((c = fgetc(fp))) {
-		if (c == '\n' || c == EOF)
-			break;
+	for (c = fgetc(fp); !(c == '\n' || c == EOF); c = fgetc(fp))
+	{
 		out = realloc(out, pos + 1);
 		out[pos++] = c;
 	}

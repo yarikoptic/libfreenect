@@ -23,10 +23,9 @@
  * Binary distributions must follow the binary distribution requirements of
  * either License.
  */
-
 #pragma once
 
-#include <libfreenect.h>
+#include "libfreenect.h"
 #include <stdexcept>
 #include <sstream>
 #include <map>
@@ -218,7 +217,8 @@ namespace Freenect {
 		// Do not call directly, thread runs here
 		void operator()() {
 			while (!m_stop) {
-				int res = freenect_process_events(m_ctx);
+				static timeval timeout = { 1, 0 };
+				int res = freenect_process_events_timeout(m_ctx, &timeout);
 				if (res < 0)
 				{
 					// libusb signals an error has occurred

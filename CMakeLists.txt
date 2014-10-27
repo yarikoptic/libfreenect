@@ -30,9 +30,8 @@
 # CMake directives
 ######################################################################################
 
-#Require 2.6 or higher. 
-
 cmake_minimum_required(VERSION 2.6)
+set(PYTHON_EXECUTABLE "python2")
 
 ######################################################################################
 # Project declaration and options
@@ -41,7 +40,7 @@ cmake_minimum_required(VERSION 2.6)
 PROJECT(libfreenect)
 
 set (PROJECT_VER_MAJOR 0)
-set (PROJECT_VER_MINOR 3)
+set (PROJECT_VER_MINOR 4)
 set (PROJECT_VER_PATCH 0)
 set (PROJECT_VER 
   "${PROJECT_VER_MAJOR}.${PROJECT_VER_MINOR}.${PROJECT_VER_PATCH}")
@@ -194,13 +193,13 @@ IF ( BUILD_CPACK )
 
   INSTALL(FILES "${CMAKE_BINARY_DIR}/lib/libfreenect.a" DESTINATION ${PROJECT_LIBRARY_INSTALL_DIR})
   if (BUILD_AUDIO)
-    INSTALL(FILES "include/libfreenect-audio.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
+    INSTALL(FILES "include/libfreenect_audio.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
   endif()
   INSTALL(FILES "include/libfreenect.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
-  INSTALL(FILES "include/libfreenect-registration.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
+  INSTALL(FILES "include/libfreenect_registration.h" DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
   INSTALL(FILES "APACHE20" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
   INSTALL(FILES "GPL2" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
-  INSTALL(FILES "README.asciidoc" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
+  INSTALL(FILES "README.md" DESTINATION "share/doc/${CPACK_PACKAGE_NAME}")
 
 ENDIF ( BUILD_CPACK )
 
