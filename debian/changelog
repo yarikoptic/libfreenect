@@ -1,9 +1,16 @@
 libfreenect (1:0.5.0+dfsg-1) unstable; urgency=medium
 
   * The latest upstream release
-  * debian/patches -- some removed, some refreshed
+  * debian/patches
+    - some removed, some refreshed
+    - adjusted for which python gets selected (force to use python 2)
+  * debian/libfreenect0.5.symbols
+    - updated for introduced new symbols
+  * debian/rules
+    - no longer manual prefixing of binaries is needed, upstream provides
+      prefixes
 
- -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 26 Oct 2014 23:09:56 -0400
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 27 Oct 2014 15:11:22 -0400
 
 libfreenect (1:0.2.0+dfsg-2) unstable; urgency=low
 

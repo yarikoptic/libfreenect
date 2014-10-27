@@ -1,0 +1,16 @@
+--- a/wrappers/python/CMakeLists.txt
++++ b/wrappers/python/CMakeLists.txt
+@@ -2,8 +2,11 @@
+ # Python extension builder
+ ######################################################################################
+ 
+-include(FindPythonInterp)
+-include(FindPythonLibs)
++#include(FindPythonInterp)
++#include(FindPythonLibs)
++
++find_package(PythonInterp 2 REQUIRED)
++find_package(PythonLibs 2 REQUIRED)
+ 
+ find_program(CYTHON_EXECUTABLE cython)
+ 

@@ -1,0 +1,11 @@
+--- a/cmake_modules/SetupDirectories.cmake
++++ b/cmake_modules/SetupDirectories.cmake
+@@ -8,7 +8,7 @@ ENDIF (PROJECT_OS_WIN)
+ STRING (TOLOWER ${PROJECT_NAME} projectNameLower)
+ SET (PROJECT_INCLUDE_INSTALL_DIR "include")
+ SET (PROJECT_MANPAGE_INSTALL_DIR "share/man")
+-SET (PROJECT_LIBRARY_INSTALL_DIR "lib")
++# SET (PROJECT_LIBRARY_INSTALL_DIR "lib")
+ 
+ MESSAGE (STATUS "${PROJECT_NAME} will be installed to ${CMAKE_INSTALL_PREFIX}")
+ MESSAGE (STATUS "Headers will be installed to ${CMAKE_INSTALL_PREFIX}/${PROJECT_INCLUDE_INSTALL_DIR}")

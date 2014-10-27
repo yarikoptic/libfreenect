@@ -8,7 +8,8 @@ export MA_TRIPLET=`dpkg-architecture -qDEB_HOST_MULTIARCH`
 	dh $@ --with python2
 
 override_dh_auto_configure:
-	dh_auto_configure -- -DBUILD_PYTHON:Bool=True -DPROJECT_LIBRARY_INSTALL_DIR="lib/$(MA_TRIPLET)"
+	dh_auto_configure -- \
+      -DBUILD_PYTHON:Bool=True -DPYTHON_EXECUTABLE=python -DPROJECT_LIBRARY_INSTALL_DIR:Path="lib/$(MA_TRIPLET)"
 
 override_dh_auto_build-indep:
 ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
@@ -18,12 +19,6 @@ else
 	: # Creating dummy blank debian/html expected by -doc package
 	mkdir -p debian/html
 endif
-
-override_dh_auto_install:
-	dh_auto_install
-	mv debian/tmp/usr/bin/glview debian/tmp/usr/bin/freenect-glview
-	mv debian/tmp/usr/bin/glpclview debian/tmp/usr/bin/freenect-glpclview
-	mv debian/tmp/usr/bin/cppview debian/tmp/usr/bin/freenect-cppview
 
 override_dh_python2:
 	dh_python2 -p python-freenect
