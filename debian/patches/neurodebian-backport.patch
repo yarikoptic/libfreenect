@@ -7,19 +7,15 @@ Subject: [PATCH] NeuroDebian backport patch
  debian/compat                  |    2 +-
  debian/control                 |    9 ++-------
  debian/libfreenect-dev.install |    6 +++---
- debian/libfreenect0.1.install  |    4 ++--
+ debian/libfreenect0.5.install  |    4 ++--
  debian/rules                   |   17 +++++++++--------
  5 files changed, 17 insertions(+), 21 deletions(-)
 
-diff --git a/debian/compat b/debian/compat
-index ec63514..7f8f011 100644
 --- a/debian/compat
 +++ b/debian/compat
 @@ -1 +1 @@
 -9
 +7
-diff --git a/debian/control b/debian/control
-index eb5882a..eaf72c8 100644
 --- a/debian/control
 +++ b/debian/control
 @@ -3,10 +3,9 @@ Section: libdevel
@@ -35,8 +31,8 @@ index eb5882a..eaf72c8 100644
  Standards-Version: 3.9.3
  Homepage: http://openkinect.org/
  Vcs-Git: git://anonscm.debian.org/pkg-exppsy/libfreenect.git
-@@ -15,8 +14,6 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-exppsy/libfreenect.git
- Package: libfreenect0.1
+@@ -15,8 +14,6 @@ Vcs-Browser: http://anonscm.debian.org/g
+ Package: libfreenect0.5
  Section: libs
  Architecture: any
 -Multi-Arch: same
@@ -44,15 +40,15 @@ index eb5882a..eaf72c8 100644
  Depends: ${shlibs:Depends}, ${misc:Depends}
  Conflicts: libfreenect
  Description: library for accessing Kinect device
-@@ -34,7 +31,6 @@ Description: library for accessing Kinect device
+@@ -34,7 +31,6 @@ Description: library for accessing Kinec
  
  Package: libfreenect-dev
  Architecture: any
 -Multi-Arch: same
- Depends: ${misc:Depends}, libfreenect0.1 (= ${binary:Version})
+ Depends: ${misc:Depends}, libfreenect0.5 (= ${binary:Version})
  Description: library for accessing Kinect device -- development files
   libfreenect is a cross-platform library that provides the necessary interfaces
-@@ -89,7 +85,6 @@ Description: library for accessing Kinect device -- dummy package
+@@ -89,7 +85,6 @@ Description: library for accessing Kinec
  Package: libfreenect-doc
  Section: doc
  Architecture: all
@@ -60,8 +56,6 @@ index eb5882a..eaf72c8 100644
  Depends: ${misc:Depends}
  Description: library for accessing Kinect device -- documentation
   libfreenect is a cross-platform library that provides the necessary interfaces
-diff --git a/debian/libfreenect-dev.install b/debian/libfreenect-dev.install
-index 40f49bf..a4aa9b1 100644
 --- a/debian/libfreenect-dev.install
 +++ b/debian/libfreenect-dev.install
 @@ -1,4 +1,4 @@
@@ -72,25 +66,23 @@ index 40f49bf..a4aa9b1 100644
 +usr/lib/*.so
 +usr/lib/fakenect/*.so 
 +usr/lib/pkgconfig/*
-diff --git a/debian/libfreenect0.1.install b/debian/libfreenect0.1.install
-index 475934d..9bd042d 100644
---- a/debian/libfreenect0.1.install
-+++ b/debian/libfreenect0.1.install
+--- a/debian/libfreenect0.5.install
++++ b/debian/libfreenect0.5.install
 @@ -1,2 +1,2 @@
 -usr/lib/*/*.so.*
 -usr/lib/*/fakenect/*.so.*
 +usr/lib/*.so.*
 +usr/lib/fakenect/*.so.*
-diff --git a/debian/rules b/debian/rules
-index 44e37d7..986c711 100755
 --- a/debian/rules
 +++ b/debian/rules
-@@ -1,16 +1,16 @@
+@@ -1,17 +1,19 @@
  #!/usr/bin/make -f
  # -*- makefile -*-
  
 -export DEB_LDFLAGS_MAINT_APPEND=-Wl,-Bsymbolic-functions -Wl,--as-needed
 -export MA_TRIPLET=`dpkg-architecture -qDEB_HOST_MULTIARCH`
++#export DEB_LDFLAGS_MAINT_APPEND=-Wl,-Bsymbolic-functions -Wl,--as-needed
++#export MA_TRIPLET=`dpkg-architecture -qDEB_HOST_MULTIARCH`
 +export LDFLAGS=-Wl,-Bsymbolic-functions -Wl,--as-needed
  
  %:
@@ -98,8 +90,9 @@ index 44e37d7..986c711 100755
 +	dh $@
  
  override_dh_auto_configure:
--	dh_auto_configure -- -DBUILD_PYTHON:Bool=True -DPROJECT_LIBRARY_INSTALL_DIR="lib/$(MA_TRIPLET)"
-+	dh_auto_configure -- -DBUILD_PYTHON:Bool=True
+ 	dh_auto_configure -- \
+-      -DBUILD_PYTHON:Bool=True -DPYTHON_EXECUTABLE=python -DPROJECT_LIBRARY_INSTALL_DIR:Path="lib/$(MA_TRIPLET)"
++      -DBUILD_PYTHON:Bool=True -DPYTHON_EXECUTABLE=python
  
 -override_dh_auto_build-indep:
 +override_dh_auto_build:
@@ -107,9 +100,9 @@ index 44e37d7..986c711 100755
  ifeq (,$(filter nodoc,$(DEB_BUILD_OPTIONS)))
  	doxygen debian/doxygen.conf
  else
-@@ -25,8 +25,8 @@ override_dh_auto_install:
- 	mv debian/tmp/usr/bin/glpclview debian/tmp/usr/bin/freenect-glpclview
- 	mv debian/tmp/usr/bin/cppview debian/tmp/usr/bin/freenect-cppview
+@@ -20,8 +22,8 @@ else
+ 	mkdir -p debian/html
+ endif
  
 -override_dh_python2:
 -	dh_python2 -p python-freenect
@@ -118,7 +111,7 @@ index 44e37d7..986c711 100755
  	if [ -x /usr/bin/dh_numpy ]; then dh_numpy -ppython-freenect; fi
  
  override_dh_installdocs:
-@@ -35,5 +35,6 @@ override_dh_installdocs:
+@@ -30,5 +32,6 @@ override_dh_installdocs:
  override_dh_makeshlibs:
  	dh_makeshlibs -Xfakenect
  
@@ -126,6 +119,3 @@ index 44e37d7..986c711 100755
 +override_dh_clean:
  	rm -rf debian/html
 +	dh_clean
--- 
-1.7.10
-
