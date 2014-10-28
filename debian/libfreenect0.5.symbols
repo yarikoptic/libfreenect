@@ -26,44 +26,44 @@ libfreenect.so.0.5 libfreenect0.5 #MINVER#
  freenect_process_events@Base 1:0.1.1
  freenect_process_events_timeout@Base 1:0.1.2
  freenect_select_subdevices@Base 1:0.1.1
- freenect_set_audio_in_callback@Base 1:0.5.0+dfsg-1
- freenect_set_audio_out_callback@Base 1:0.5.0+dfsg-1
+ freenect_set_audio_in_callback@Base 1:0.5.0
+ freenect_set_audio_out_callback@Base 1:0.5.0
  freenect_set_depth_buffer@Base 1:0.1.1
  freenect_set_depth_callback@Base 1:0.1.1
- freenect_set_depth_chunk_callback@Base 1:0.5.0+dfsg-1
+ freenect_set_depth_chunk_callback@Base 1:0.5.0
  freenect_set_depth_mode@Base 1:0.1.1
  freenect_set_flag@Base 1:0.2.0
- freenect_set_fw_address_k4w@Base 1:0.5.0+dfsg-1
- freenect_set_fw_address_nui@Base 1:0.5.0+dfsg-1
+ freenect_set_fw_address_k4w@Base 1:0.5.0
+ freenect_set_fw_address_nui@Base 1:0.5.0
  freenect_set_led@Base 1:0.1.1
- freenect_set_led_alt@Base 1:0.5.0+dfsg-1
+ freenect_set_led_alt@Base 1:0.5.0
  freenect_set_log_callback@Base 1:0.1.1
  freenect_set_log_level@Base 1:0.1.1
  freenect_set_tilt_degs@Base 1:0.1.1
- freenect_set_tilt_degs_alt@Base 1:0.5.0+dfsg-1
+ freenect_set_tilt_degs_alt@Base 1:0.5.0
  freenect_set_user@Base 1:0.1.1
  freenect_set_video_buffer@Base 1:0.1.1
  freenect_set_video_callback@Base 1:0.1.1
- freenect_set_video_chunk_callback@Base 1:0.5.0+dfsg-1
+ freenect_set_video_chunk_callback@Base 1:0.5.0
  freenect_set_video_mode@Base 1:0.1.1
  freenect_shutdown@Base 1:0.1.1
- freenect_start_audio@Base 1:0.5.0+dfsg-1
+ freenect_start_audio@Base 1:0.5.0
  freenect_start_depth@Base 1:0.1.1
  freenect_start_video@Base 1:0.1.1
- freenect_stop_audio@Base 1:0.5.0+dfsg-1
+ freenect_stop_audio@Base 1:0.5.0
  freenect_stop_depth@Base 1:0.1.1
  freenect_stop_video@Base 1:0.1.1
  freenect_supported_subdevices@Base 1:0.1.2
  freenect_update_tilt_state@Base 1:0.1.1
- get_reply@Base 1:0.5.0+dfsg-1
- update_tilt_state_alt@Base 1:0.5.0+dfsg-1
+ get_reply@Base 1:0.5.0
+ update_tilt_state_alt@Base 1:0.5.0
 libfreenect_sync.so.0.5 libfreenect0.5 #MINVER#
- freenect_sync_camera_to_world@Base 1:0.5.0+dfsg-1
+ freenect_sync_camera_to_world@Base 1:0.5.0
  freenect_sync_get_depth@Base 1:0.1.1
- freenect_sync_get_depth_with_res@Base 1:0.5.0+dfsg-1
+ freenect_sync_get_depth_with_res@Base 1:0.5.0
  freenect_sync_get_tilt_state@Base 1:0.1.1
  freenect_sync_get_video@Base 1:0.1.1
- freenect_sync_get_video_with_res@Base 1:0.5.0+dfsg-1
+ freenect_sync_get_video_with_res@Base 1:0.5.0
  freenect_sync_set_led@Base 1:0.1.1
  freenect_sync_set_tilt_degs@Base 1:0.1.1
  freenect_sync_stop@Base 1:0.1.1
