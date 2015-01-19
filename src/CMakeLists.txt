@@ -5,14 +5,13 @@
 include_directories (${CMAKE_CURRENT_SOURCE_DIR})
 
 include_directories(${LIBUSB_1_INCLUDE_DIRS})
-LIST(APPEND SRC core.c tilt.c cameras.c flags.c usb_libusb10.c registration.c)
+LIST(APPEND SRC core.c tilt.c cameras.c flags.c usb_libusb10.c registration.c audio.c loader.c)
 IF(WIN32)
   set_source_files_properties(${SRC} PROPERTIES LANGUAGE CXX)
 ENDIF(WIN32)
 
-# Audio
+# Audio Firmware
 include(FindPythonInterp)
-LIST(APPEND SRC audio.c loader.c)
 IF(BUILD_REDIST_PACKAGE)
   # If this build is intended for a redistributable package, we can't include audios.bin, so we should include fwfetcher.py
   # and the package should run "python fwfetcher.py $INSTALL_PREFIX/share" as a postinst hook
@@ -47,7 +46,7 @@ target_link_libraries (freenectstatic ${LIBUSB_1_LIBRARIES})
 install (FILES "../include/libfreenect.h" "../include/libfreenect_registration.h" "../include/libfreenect_audio.h"
   DESTINATION ${PROJECT_INCLUDE_INSTALL_DIR})
 
-IF(UNIX AND NOT APPLE)
+IF(UNIX)
   # Produce a pkg-config file for linking against the shared lib
   configure_file ("libfreenect.pc.in" "libfreenect.pc" @ONLY)
   install (FILES "${CMAKE_CURRENT_BINARY_DIR}/libfreenect.pc"
