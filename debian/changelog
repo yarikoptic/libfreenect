@@ -1,4 +1,4 @@
-libfreenect (1:0.5.0+dfsg-1) experimental; urgency=medium
+libfreenect (1:0.5.1+dfsg-1) experimental; urgency=medium
 
   * The latest upstream release
   * debian/patches
