@@ -4,9 +4,8 @@ Upstream-Contact: openkinect@googlegroups.com
 Source: https://github.com/OpenKinect/libfreenect
 
 Files: *
-Copyright: 2009-2013, individual OpenKinect contributors.
-           See the CONTRIB (debian/CONTRIB in the Debian source package)
-           file for details.
+Copyright: 2009-2014, individual OpenKinect contributors.
+           See the CONTRIB file for details.
 License: Apache-2 or GPL-2
   This code is licensed to you under the terms of the Apache License,
   version 2.0, or, at your option, the terms of the GNU General Public
@@ -62,17 +61,27 @@ Copyright: 2010, Josh Grunzweig & Eric Monti
 		   2011, Alex Weiss <algrs@cacography.net>
 License: Expat
 
+Files: src/fwfetcher.py
+Copyright: 2007, 2008, Rene Ladan <r.c.ladan@gmail.com>
+License: BSD-2-Clause
+
+Files: OpenNI2-FreenectDriver/extern/*
+Copyright: 2012, PrimeSense Ltd
+License: Apache-2
 
 Files: debian/*
 Copyright: 2010, arne <arne@alamut.de>
-           2010-2013, Yaroslav Halchenko <debian@onerussian.com>
+           2010-2015, Yaroslav Halchenko <debian@onerussian.com>
 	       2012, Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 License: GPL-2
 
 License: GPL-2
   On Debian systems, the complete text of the GNU General
   Public License version 2 can be found in `/usr/share/common-licenses/GPL-2'.
-  The Apache License is found in `/usr/share/common-licenses/Apache-2.0'
+
+License: Apache-2
+  On Debian systems, the complete text of the the Apache License can be
+  found in `/usr/share/common-licenses/Apache-2.0'.
 
 License: Expat
  Permission is hereby granted, free of charge, to any person obtaining
@@ -93,3 +102,31 @@ License: Expat
  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+License: BSD-2-Clause
+ All rights reserved.
+ .
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ .
+ 1) Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+ .
+ 2) Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in the
+ documentation and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+ OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+ AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY
+ WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ POSSIBILITY OF SUCH DAMAGE.
+

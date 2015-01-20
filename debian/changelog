@@ -11,8 +11,11 @@ libfreenect (1:0.5.1+dfsg-1) experimental; urgency=medium
       prefixes
   * debian/control
     - -dev package depends on libusb-1.0-0-dev (Closes: #775768)
+  * debian/copyright
+    - updated upstream years and added missing copyright/license information
+      (Thanks Thorsten Alteholz for the review)
 
- -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 19 Jan 2015 14:01:10 -0500
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 20 Jan 2015 14:00:33 -0500
 
 libfreenect (1:0.2.0+dfsg-2) unstable; urgency=low
 
