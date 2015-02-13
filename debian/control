@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Nicolas Bourdaud <nicolas.bourdaud@gmail.com>
 Uploaders: Arne Bernin <arne@alamut.de>, Yaroslav Halchenko <debian@onerussian.com>, Mark Renouf <mark.renouf@gmail.com>
 Build-Depends: debhelper (>= 9), cmake,  pkg-config,
- libusb-1.0-0-dev, freeglut3-dev, libxmu-dev, libxi-dev,
+ libusb-1.0-0-dev(>= 1.0.18~), freeglut3-dev, libxmu-dev, libxi-dev,
  python-all-dev (>= 2.6.6-3~), cython, python-numpy, doxygen
 X-Python-Version: 2.7
 Standards-Version: 3.9.3
@@ -35,7 +35,7 @@ Description: library for accessing Kinect device
 Package: libfreenect-dev
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends}, libfreenect0.5 (= ${binary:Version}), libusb-1.0-0-dev
+Depends: ${misc:Depends}, libfreenect0.5 (= ${binary:Version}), libusb-1.0-0-dev (>= 1.0.18~)
 Description: library for accessing Kinect device -- development files
  libfreenect is a cross-platform library that provides the necessary interfaces
  to activate, initialize, and communicate data with the Kinect hardware.

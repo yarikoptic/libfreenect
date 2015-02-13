@@ -2,6 +2,8 @@ libfreenect (1:0.5.2+git2-g68073c3+dfsg-1) experimental; urgency=medium
 
   * New upstream snapshot from v0.5.2-2-g68073c3
   * debian/patches/add-missing-libs.patch to resolve conflict
+  * debian/control
+    - requires libusb >= 1.0.18 (for libusb_get_parent)
 
  -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 13 Feb 2015 10:22:27 -0500
 
